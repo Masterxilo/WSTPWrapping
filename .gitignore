@@ -1,3 +1,9 @@
+WSTPWrappingDemo/x64
+WSTPWrappingDemo/generated
+*.sdf
+*.suo
+*.opensdf
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

@@ -1,0 +1,245 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8075,        237]
+NotebookOptionsPosition[      7028,        195]
+NotebookOutlinePosition[      7369,        210]
+CellTagsIndexPosition[      7326,        207]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["1. Write code, extract definitions", "Chapter",
+ CellChangeTimes->{{3.679991070994943*^9, 3.679991073573162*^9}, {
+  3.679991305889037*^9, 3.6799913092252007`*^9}}],
+
+Cell["\<\
+Put the definitions of functions you created here, including sal annotations\
+\>", "Text",
+ CellChangeTimes->{{3.6799911002124405`*^9, 3.679991111796854*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"functions", "=", 
+  RowBox[{
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{"void", " ", "print", 
+      RowBox[{"(", 
+       RowBox[{
+       "_In", "_z", "_", " ", "const", " ", "char", "*", "const", " ", 
+        "string"}], ")"}]}], "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"function", "[", 
+     RowBox[{
+      RowBox[{"{", "\"\<void\>\"", "}"}], ",", "\"\<print\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{"argument", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<char\>\"", ",", "\"\<const\>\"", ",", "\"\<*\>\"", ",", 
+           "\"\<const\>\""}], "}"}], ",", 
+         RowBox[{"sal", "[", "\"\<_In_z_\>\"", "]"}], ",", "\"\<string\>\""}],
+         "]"}], "}"}]}], "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    "}"}], "/.", 
+   RowBox[{
+    RowBox[{"function", "|", "argument"}], "\[Rule]", "List"}]}]}]], "Input",
+ CellChangeTimes->{{3.679991112718004*^9, 3.6799911618012486`*^9}, {
+  3.679991223196858*^9, 3.679991293706838*^9}, {3.6799918051690245`*^9, 
+  3.6799918571428766`*^9}, {3.6799921570250607`*^9, 3.6799921584888873`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", "\<\"void\"\>", "}"}], ",", "\<\"print\"\>", ",", 
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"\<\"char\"\>", ",", "\<\"const\"\>", ",", "\<\"*\"\>", 
+         ",", "\<\"const\"\>"}], "}"}], ",", 
+       RowBox[{"sal", "[", "\<\"_In_z_\"\>", "]"}], ",", "\<\"string\"\>"}], 
+      "}"}], "}"}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{3.6799917018020477`*^9, 3.679991736603486*^9, 
+  3.67999179227395*^9, 3.6799918575984783`*^9, 3.679991983484558*^9, 
+  3.679992159186768*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2. Generate WSTP code", "Chapter",
+ CellChangeTimes->{{3.679991065443015*^9, 3.679991082018734*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SetDirectory", "@", 
+  RowBox[{"NotebookDirectory", "[", "]"}]}]], "Input",
+ CellChangeTimes->{{3.6799909846231875`*^9, 3.679990993172838*^9}}],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\\
+MasterarbeitShared\\\\Research\\\\MathematicaLibraries\\\\WSTPWrapping\\\\\
+WSTPWrappingDemo\"\>"], "Output",
+ CellChangeTimes->{3.6799909937245417`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"pre", "=", "\"\<generated\\\\\>\""}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"pre", "<>", "\"\<WSTPTemplateFile.tm\>\""}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"StringJoin", "[", "\[IndentingNewLine]", 
+     RowBox[{"buildTemplateFileSpecForFunction", "@@@", "functions"}], 
+     "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+    "\"\<String\>\""}], "]"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"pre", "<>", "\"\<WSTPMain.c\>\""}], ",", "\[IndentingNewLine]", 
+    RowBox[{"RunProcess", "[", 
+     RowBox[{
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+       "\"\<J:\\\\Masterarbeit\\\\Implementation\\\\CPPLibraries\\\\\
+Mathematica\\\\wsprep.exe\>\"", ",", "\[IndentingNewLine]", 
+        RowBox[{"pre", "<>", "\"\<WSTPTemplateFile.tm\>\""}]}], 
+       "\[IndentingNewLine]", "}"}], ",", "\"\<StandardOutput\>\""}], "]"}], 
+    ",", "\"\<String\>\""}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"pre", "<>", "\"\<WSTPExternC.cpp\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"$WSTPWrappingCDefines", "<>", "\[IndentingNewLine]", 
+    RowBox[{"ToCCodeString", "[", "\[IndentingNewLine]", 
+     RowBox[{"buildExternCFunctionForFunction", "@@@", "functions"}], 
+     "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", ",", 
+   "\"\<String\>\""}], "]"}]}], "Input",
+ CellChangeTimes->{{3.679990938192235*^9, 3.6799910491146765`*^9}, {
+  3.6799915969592257`*^9, 3.679991772002651*^9}, {3.6799918769265614`*^9, 
+  3.6799919119152193`*^9}, {3.679992030105715*^9, 3.679992049347704*^9}}],
+
+Cell[BoxData["\<\"generated\\\\WSTPTemplateFile.tm\"\>"], "Output",
+ CellChangeTimes->{{3.679991772455205*^9, 3.6799917932741823`*^9}, {
+   3.6799918663143363`*^9, 3.6799918793325634`*^9}, 3.6799919131627755`*^9, 
+   3.6799919841753836`*^9, {3.679992030698433*^9, 3.6799920503139086`*^9}, 
+   3.6799921605554657`*^9}],
+
+Cell[BoxData["\<\"generated\\\\WSTPMain.c\"\>"], "Output",
+ CellChangeTimes->{{3.679991772455205*^9, 3.6799917932741823`*^9}, {
+   3.6799918663143363`*^9, 3.6799918793325634`*^9}, 3.6799919131627755`*^9, 
+   3.6799919841753836`*^9, {3.679992030698433*^9, 3.6799920503139086`*^9}, 
+   3.679992160557469*^9}],
+
+Cell[BoxData["\<\"generated\\\\WSTPExternC.cpp\"\>"], "Output",
+ CellChangeTimes->{{3.679991772455205*^9, 3.6799917932741823`*^9}, {
+   3.6799918663143363`*^9, 3.6799918793325634`*^9}, 3.6799919131627755`*^9, 
+   3.6799919841753836`*^9, {3.679992030698433*^9, 3.6799920503139086`*^9}, 
+   3.679992160559472*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell["3. Compile", "Chapter",
+ CellChangeTimes->{{3.679991084273526*^9, 3.679991085908551*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["4. Use", "Chapter",
+ CellChangeTimes->{{3.6799910874254436`*^9, 3.6799910883386335`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Install", "[", 
+   RowBox[{
+    RowBox[{"NotebookDirectory", "[", "]"}], "<>", 
+    "\"\<x64/Debug/WSTPWrappingDemo.exe\>\""}], "]"}], "//", 
+  "LinkPatterns"}]], "Input",
+ CellChangeTimes->{{3.6799921003353243`*^9, 3.6799921015859013`*^9}, {
+  3.679992171734414*^9, 3.679992204136861*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  TagBox[
+   RowBox[{"print", "[", "string_String", "]"}],
+   HoldForm], "}"}]], "Output",
+ CellChangeTimes->{3.6799922044832926`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"print", "@", "\"\<Hello, world!\>\""}]], "Input",
+ CellChangeTimes->{{3.679992207904561*^9, 3.6799922129868884`*^9}}]
+}, Open  ]]
+},
+WindowSize->{942, 974},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (April 11, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 170, 2, 64, "Chapter"],
+Cell[753, 26, 168, 3, 30, "Text"],
+Cell[CellGroupData[{
+Cell[946, 33, 1143, 27, 112, "Input"],
+Cell[2092, 62, 602, 15, 31, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2743, 83, 106, 1, 64, "Chapter"],
+Cell[CellGroupData[{
+Cell[2874, 88, 167, 3, 31, "Input"],
+Cell[3044, 93, 215, 3, 52, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3296, 101, 1859, 39, 472, "Input"],
+Cell[5158, 142, 317, 4, 31, "Output"],
+Cell[5478, 148, 306, 4, 31, "Output"],
+Cell[5787, 154, 311, 4, 31, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[6125, 162, 95, 1, 64, "Chapter"],
+Cell[CellGroupData[{
+Cell[6245, 167, 95, 1, 53, "Chapter"],
+Cell[CellGroupData[{
+Cell[6365, 172, 325, 8, 31, "Input"],
+Cell[6693, 182, 163, 5, 31, "Output"]
+}, Open  ]],
+Cell[6871, 190, 141, 2, 31, "Input"]
+}, Open  ]]
+}
+]
+*)
+
