@@ -10,16 +10,19 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      8075,        237]
-NotebookOptionsPosition[      7028,        195]
-NotebookOutlinePosition[      7369,        210]
-CellTagsIndexPosition[      7326,        207]
+NotebookDataLength[     30072,        570]
+NotebookOptionsPosition[     28607,        514]
+NotebookOutlinePosition[     28948,        529]
+CellTagsIndexPosition[     28905,        526]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+Cell["0. Run WSTPWrapping.nb", "Chapter",
+ CellChangeTimes->{{3.67999290651828*^9, 3.6799929089483185`*^9}}],
 
 Cell[CellGroupData[{
+
 Cell["1. Write code, extract definitions", "Chapter",
  CellChangeTimes->{{3.679991070994943*^9, 3.679991073573162*^9}, {
   3.679991305889037*^9, 3.6799913092252007`*^9}}],
@@ -28,6 +31,9 @@ Cell["\<\
 Put the definitions of functions you created here, including sal annotations\
 \>", "Text",
  CellChangeTimes->{{3.6799911002124405`*^9, 3.679991111796854*^9}}],
+
+Cell["A parser would automate this process.", "Text",
+ CellChangeTimes->{{3.6799924231341395`*^9, 3.679992437373911*^9}}],
 
 Cell[CellGroupData[{
 
@@ -73,9 +79,12 @@ Cell[BoxData[
          ",", "\<\"const\"\>"}], "}"}], ",", 
        RowBox[{"sal", "[", "\<\"_In_z_\"\>", "]"}], ",", "\<\"string\"\>"}], 
       "}"}], "}"}]}], "}"}], "}"}]], "Output",
- CellChangeTimes->{3.6799917018020477`*^9, 3.679991736603486*^9, 
-  3.67999179227395*^9, 3.6799918575984783`*^9, 3.679991983484558*^9, 
-  3.679992159186768*^9}]
+ CellChangeTimes->{
+  3.6799917018020477`*^9, 3.679991736603486*^9, 3.67999179227395*^9, 
+   3.6799918575984783`*^9, 3.679991983484558*^9, 3.679992159186768*^9, 
+   3.679992439309289*^9, {3.6799924843925724`*^9, 3.6799925105501795`*^9}, {
+   3.6799926291952367`*^9, 3.679992639905585*^9}, {3.6799926718074074`*^9, 
+   3.6799926806243935`*^9}}]
 }, Open  ]]
 }, Open  ]],
 
@@ -94,7 +103,10 @@ Cell[BoxData[
 Cell[BoxData["\<\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\\
 MasterarbeitShared\\\\Research\\\\MathematicaLibraries\\\\WSTPWrapping\\\\\
 WSTPWrappingDemo\"\>"], "Output",
- CellChangeTimes->{3.6799909937245417`*^9}]
+ CellChangeTimes->{
+  3.6799909937245417`*^9, 3.679992439370365*^9, {3.679992484453642*^9, 
+   3.6799925106052685`*^9}, {3.6799926292593164`*^9, 
+   3.6799926399746866`*^9}, {3.67999267187449*^9, 3.6799926806934795`*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -144,24 +156,328 @@ Cell[BoxData["\<\"generated\\\\WSTPTemplateFile.tm\"\>"], "Output",
  CellChangeTimes->{{3.679991772455205*^9, 3.6799917932741823`*^9}, {
    3.6799918663143363`*^9, 3.6799918793325634`*^9}, 3.6799919131627755`*^9, 
    3.6799919841753836`*^9, {3.679992030698433*^9, 3.6799920503139086`*^9}, 
-   3.6799921605554657`*^9}],
+   3.6799921605554657`*^9, 3.6799924393933916`*^9, {3.6799924844756436`*^9, 
+   3.6799925106312804`*^9}, {3.6799926292863345`*^9, 
+   3.6799926400027213`*^9}, {3.6799926719035125`*^9, 3.6799926807235174`*^9}}],
 
 Cell[BoxData["\<\"generated\\\\WSTPMain.c\"\>"], "Output",
  CellChangeTimes->{{3.679991772455205*^9, 3.6799917932741823`*^9}, {
    3.6799918663143363`*^9, 3.6799918793325634`*^9}, 3.6799919131627755`*^9, 
    3.6799919841753836`*^9, {3.679992030698433*^9, 3.6799920503139086`*^9}, 
-   3.679992160557469*^9}],
+   3.6799921605554657`*^9, 3.6799924393933916`*^9, {3.6799924844756436`*^9, 
+   3.6799925106312804`*^9}, {3.6799926292863345`*^9, 
+   3.6799926400027213`*^9}, {3.6799926719035125`*^9, 3.679992680725518*^9}}],
 
 Cell[BoxData["\<\"generated\\\\WSTPExternC.cpp\"\>"], "Output",
  CellChangeTimes->{{3.679991772455205*^9, 3.6799917932741823`*^9}, {
    3.6799918663143363`*^9, 3.6799918793325634`*^9}, 3.6799919131627755`*^9, 
    3.6799919841753836`*^9, {3.679992030698433*^9, 3.6799920503139086`*^9}, 
-   3.679992160559472*^9}]
+   3.6799921605554657`*^9, 3.6799924393933916`*^9, {3.6799924844756436`*^9, 
+   3.6799925106312804`*^9}, {3.6799926292863345`*^9, 
+   3.6799926400027213`*^9}, {3.6799926719035125`*^9, 3.67999268072652*^9}}]
 }, Open  ]]
 }, Open  ]],
 
+Cell[CellGroupData[{
+
 Cell["3. Compile", "Chapter",
  CellChangeTimes->{{3.679991084273526*^9, 3.679991085908551*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TaskKill", "@", "\"\<WSTPWrappingDemo.exe\>\""}]], "Input",
+ CellChangeTimes->{{3.6799925216770716`*^9, 3.679992531708583*^9}, 
+   3.67999262168487*^9}],
+
+Cell[BoxData["\<\"SUCCESS: The process \\\"WSTPWrappingDemo.exe\\\" with PID \
+4200 has been terminated.\\r\\n\"\>"], "Echo",
+ CellChangeTimes->{3.679992680799612*^9}],
+
+Cell[BoxData["\<\"SUCCESS: The process \\\"WSTPWrappingDemo.exe\\\" with PID \
+4200 has been terminated.\\r\\n\"\>"], "Output",
+ CellChangeTimes->{
+  3.6799925322462664`*^9, {3.6799926293644485`*^9, 3.679992640064804*^9}, {
+   3.679992672009646*^9, 3.6799926808226395`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MSBuild", "@", "\"\<WSTPWrappingDemo.sln\>\""}]], "Input",
+ CellChangeTimes->{{3.679992343635925*^9, 3.6799923518161516`*^9}}],
+
+Cell[BoxData["\<\"Microsoft (R) Build Engine \[ATilde]\.83\.90\[ATilde]\.83\
+\.bc\[ATilde]\.82\[Cedilla]\[ATilde]\.83\[Section]\[ATilde]\.83\.b3 \
+12.0.31101.0\\r\\n[Microsoft .NET Framework\[ATilde]\.80\.81\[ATilde]\.83\.90\
+\[ATilde]\.83\.bc\[ATilde]\.82\[Cedilla]\[ATilde]\.83\[Section]\[ATilde]\.83\
+\.b3 4.0.30319.34209]\\r\\nCopyright (C) Microsoft Corporation. All rights \
+reserved.\\r\\n\\r\\n\[ATilde]\.81\.93\[ATilde]\.81\[RegisteredTrademark]\
+\[ATilde]\.82\.bd\[ATilde]\.83\.aa\[ATilde]\.83\[Yen]\[ATilde]\.83\.bc\
+\[ATilde]\.82\[CenterDot]\[ATilde]\.83\[Section]\[ATilde]\.83\.b3\[ARing]\.86\
+\.85\[ATilde]\.81\[RegisteredTrademark]\[ATilde]\.83\.97\[ATilde]\.83\
+\[DiscretionaryHyphen]\[ATilde]\.82\[Cedilla]\[ATilde]\.82\[Section]\[ATilde]\
+\.82\.af\[ATilde]\.83\.88\[ATilde]\.82\.92 1 \[ARing]\.ba\.a6\[ATilde]\.81\
+\[LeftGuillemet] 1 \[ATilde]\.81\[Currency]\[ATilde]\.81\.9a\[ATilde]\.81\
+\[Currency]\[ATilde]\.83\.93\[ATilde]\.83\[LeftGuillemet]\[ATilde]\.83\.89\
+\[ATilde]\.81\.97\[ATilde]\.81\.be\[ATilde]\.81\.99\[ATilde]\.80\.82\
+\[ADoubleDot]\[Cedilla]\.a6\[EGrave]\[DownExclamation]\.8c\[ATilde]\.83\.93\
+\[ATilde]\.83\[LeftGuillemet]\[ATilde]\.83\.89\[ATilde]\.82\.92\[AE]\.9c\.89\
+\[ARing]\.8a\.b9\[ATilde]\.81\[LeftGuillemet]\[ATilde]\.81\.99\[ATilde]\.82\
+\.8b\[ATilde]\.81\[LeftGuillemet]\[ATilde]\.81\.af\[ATilde]\.80\.81\\\"/m\\\" \
+\[ATilde]\.82\.b9\[ATilde]\.82\[Currency]\[ATilde]\.83\.83\[ATilde]\.83\.81\
+\[ATilde]\.82\.92\[EGrave]\[DownQuestion]\.bd\[ARing]\.8a\[NonBreakingSpace]\
+\[ATilde]\.81\.97\[ATilde]\.81\.a6\[ATilde]\.81\.8f\[ATilde]\.81\
+\[NonBreakingSpace]\[ATilde]\.81\.95\[ATilde]\.81\.84\[ATilde]\.80\.82\\r\\\
+n12.08.2016 14:11:20 \[ATilde]\.81\[LeftGuillemet]\[ATilde]\.83\.93\[ATilde]\
+\.83\[LeftGuillemet]\[ATilde]\.83\.89\[ATilde]\.82\.92\[EAcute]\.96\.8b\
+\[ARing]\[Section]\.8b\[ATilde]\.81\.97\[ATilde]\.81\.be\[ATilde]\.81\.97\
+\[ATilde]\.81\.9f\[ATilde]\.80\.82\\r\\n\[ATilde]\.83\.8e\[ATilde]\.83\.bc\
+\[ATilde]\.83\.89 1 \[ADoubleDot]\[Cedilla]\.8a\[ATilde]\.81\
+\[RegisteredTrademark]\[ATilde]\.83\.97\[ATilde]\.83\[DiscretionaryHyphen]\
+\[ATilde]\.82\[Cedilla]\[ATilde]\.82\[Section]\[ATilde]\.82\.af\[ATilde]\.83\
+\.88 \\\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\\\
+Research\\\\MathematicaLibraries\\\\WSTPWrapping\\\\WSTPWrappingDemo\\\\\
+WSTPWrappingDemo.sln\\\" (Rebuild \[ATilde]\.82\[DownQuestion]\[ATilde]\.83\
+\.bc\[ATilde]\.82\.b2\[ATilde]\.83\.83\[ATilde]\.83\.88)\[ATilde]\.80\.82\\r\\\
+nValidateSolutionConfiguration:\\r\\n  \[ATilde]\.82\.bd\[ATilde]\.83\.aa\
+\[ATilde]\.83\[Yen]\[ATilde]\.83\.bc\[ATilde]\.82\[CenterDot]\[ATilde]\.83\
+\[Section]\[ATilde]\.83\.b3\[AE]\[Section]\.8b\[AE]\.88\.90 \\\"Debug|x64\\\" \
+\[ATilde]\.82\.92\[ATilde]\.83\.93\[ATilde]\.83\[LeftGuillemet]\[ATilde]\.83\
+\.89\[ATilde]\.81\.97\[ATilde]\.81\.a6\[ATilde]\.81\.84\[ATilde]\.81\.be\
+\[ATilde]\.81\.99\[ATilde]\.80\.82\\r\\n\[ATilde]\.83\.97\[ATilde]\.83\
+\[DiscretionaryHyphen]\[ATilde]\.82\[Cedilla]\[ATilde]\.82\[Section]\[ATilde]\
+\.82\.af\[ATilde]\.83\.88 \
+\\\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\\Research\\\
+\\MathematicaLibraries\\\\WSTPWrapping\\\\WSTPWrappingDemo\\\\\
+WSTPWrappingDemo.sln\\\" (1) \[ATilde]\.81\.af\[ATilde]\.80\.81\[ATilde]\.83\
+\.8e\[ATilde]\.83\.bc\[ATilde]\.83\.89 1 \[ADoubleDot]\[Cedilla]\.8a\[ATilde]\
+\.81\[LeftGuillemet] \
+\\\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\\Research\\\
+\\MathematicaLibraries\\\\WSTPWrapping\\\\WSTPWrappingDemo\\\\\
+WSTPWrappingDemo.vcxproj\\\" (2) \[ATilde]\.82\.92\[ATilde]\.83\.93\[ATilde]\
+\.83\[LeftGuillemet]\[ATilde]\.83\.89\[ATilde]\.81\.97\[ATilde]\.81\.a6\
+\[ATilde]\.81\.84\[ATilde]\.81\.be\[ATilde]\.81\.99 (Rebuild \[ATilde]\.82\
+\[DownQuestion]\[ATilde]\.83\.bc\[ATilde]\.82\.b2\[ATilde]\.83\.83\[ATilde]\
+\.83\.88)\[ATilde]\.80\.82\\r\\n_PrepareForClean:\\r\\n  \[ATilde]\.83\.95\
+\[ATilde]\.82\[DownExclamation]\[ATilde]\.82\[Currency]\[ATilde]\.83\
+\[LeftGuillemet] \
+\\\"x64\\\\Debug\\\\WSTPWrappingDemo.tlog\\\\WSTPWrappingDemo.lastbuildstate\\\
+\" \[ATilde]\.82\.92\[ARing]\.89\.8a\[EAcute]\.99\[Currency]\[ATilde]\.81\.97\
+\[ATilde]\.81\.a6\[ATilde]\.81\.84\[ATilde]\.81\.be\[ATilde]\.81\.99\[ATilde]\
+\.80\.82\\r\\nInitializeBuildStatus:\\r\\n  \\\"AlwaysCreate\\\" \
+\[ATilde]\.81\.8c\[AE]\.8c\.87\[ARing]\[RegisteredTrademark]\.9a\[ATilde]\.81\
+\.95\[ATilde]\.82\.8c\[ATilde]\.81\.9f\[ATilde]\.81\.9f\[ATilde]\.82\.81 \
+\\\"x64\\\\Debug\\\\WSTPWrappingDemo.tlog\\\\unsuccessfulbuild\\\" \[ATilde]\
+\.82\.92\[ADoubleDot]\.bd\.9c\[AE]\.88\.90\[ATilde]\.81\.97\[ATilde]\.81\.a6\
+\[ATilde]\.81\.84\[ATilde]\.81\.be\[ATilde]\.81\.99\[ATilde]\.80\.82\\r\\\
+nClCompile:\\r\\n  C:\\\\Program Files (x86)\\\\Microsoft Visual Studio \
+12.0\\\\VC\\\\bin\\\\x86_amd64\\\\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /D \
+_MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope \
+/Fo\\\"x64\\\\Debug\\\\\\\\\\\" /Fd\\\"x64\\\\Debug\\\\vc120.pdb\\\" /Gd /TP \
+/errorReport:queue generated\\\\WSTPExternC.cpp Source.cpp\\r\\n  \
+Source.cpp\\r\\n  WSTPExternC.cpp\\r\\n  Generating Code...\\r\\n  \
+C:\\\\Program Files (x86)\\\\Microsoft Visual Studio \
+12.0\\\\VC\\\\bin\\\\x86_amd64\\\\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /D \
+_MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope \
+/Fo\\\"x64\\\\Debug\\\\\\\\\\\" /Fd\\\"x64\\\\Debug\\\\vc120.pdb\\\" /Gd /TC \
+/errorReport:queue generated\\\\WSTPMain.c\\r\\n  WSTPMain.c\\r\\nLink:\\r\\n \
+ C:\\\\Program Files (x86)\\\\Microsoft Visual Studio \
+12.0\\\\VC\\\\bin\\\\x86_amd64\\\\link.exe /ERRORREPORT:QUEUE \
+/OUT:\\\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\\\
+Research\\\\MathematicaLibraries\\\\WSTPWrapping\\\\WSTPWrappingDemo\\\\x64\\\
+\\Debug\\\\WSTPWrappingDemo.exe\\\" /INCREMENTAL /NOLOGO kernel32.lib \
+user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib \
+ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST \
+/MANIFESTUAC:\\\"level='asInvoker' uiAccess='false'\\\" /manifest:embed \
+/DEBUG /PDB:\\\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\
+\\Research\\\\MathematicaLibraries\\\\WSTPWrapping\\\\WSTPWrappingDemo\\\\x64\
+\\\\Debug\\\\WSTPWrappingDemo.pdb\\\" /TLBID:1 /DYNAMICBASE /NXCOMPAT \
+/IMPLIB:\\\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\\\
+Research\\\\MathematicaLibraries\\\\WSTPWrapping\\\\WSTPWrappingDemo\\\\x64\\\
+\\Debug\\\\WSTPWrappingDemo.lib\\\" /MACHINE:X64 \
+x64\\\\Debug\\\\WSTPExternC.obj\\r\\n  x64\\\\Debug\\\\WSTPMain.obj\\r\\n  \
+x64\\\\Debug\\\\Source.obj\\r\\n  WSTPWrappingDemo.vcxproj -> \
+C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\\Research\\\\\
+MathematicaLibraries\\\\WSTPWrapping\\\\WSTPWrappingDemo\\\\x64\\\\Debug\\\\\
+WSTPWrappingDemo.exe\\r\\nFinalizeBuildStatus:\\r\\n  \[ATilde]\.83\.95\
+\[ATilde]\.82\[DownExclamation]\[ATilde]\.82\[Currency]\[ATilde]\.83\
+\[LeftGuillemet] \
+\\\"x64\\\\Debug\\\\WSTPWrappingDemo.tlog\\\\unsuccessfulbuild\\\" \[ATilde]\
+\.82\.92\[ARing]\.89\.8a\[EAcute]\.99\[Currency]\[ATilde]\.81\.97\[ATilde]\.81\
+\.a6\[ATilde]\.81\.84\[ATilde]\.81\.be\[ATilde]\.81\.99\[ATilde]\.80\.82\\r\\\
+n  \\\"x64\\\\Debug\\\\WSTPWrappingDemo.tlog\\\\WSTPWrappingDemo.\
+lastbuildstate\\\" \[ATilde]\.81\[RegisteredTrademark]\[ATilde]\.82\
+\[DownQuestion]\[ATilde]\.83\.83\[ATilde]\.83\.81 \
+\[ATilde]\.82\[DownQuestion]\[ATilde]\.82\.b9\[ATilde]\.82\.af\[ATilde]\.82\
+\.92\[ARing]\[RegisteredTrademark]\.9f\[EGrave]\[DownExclamation]\.8c\[ATilde]\
+\.81\.97\[ATilde]\.81\.a6\[ATilde]\.81\.84\[ATilde]\.81\.be\[ATilde]\.81\.99\
+\[ATilde]\.80\.82\\r\\n\[ATilde]\.83\.97\[ATilde]\.83\[DiscretionaryHyphen]\
+\[ATilde]\.82\[Cedilla]\[ATilde]\.82\[Section]\[ATilde]\.82\.af\[ATilde]\.83\
+\.88 \\\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\\\
+Research\\\\MathematicaLibraries\\\\WSTPWrapping\\\\WSTPWrappingDemo\\\\\
+WSTPWrappingDemo.vcxproj\\\" (Rebuild \[ATilde]\.82\[DownQuestion]\[ATilde]\
+\.83\.bc\[ATilde]\.82\.b2\[ATilde]\.83\.83\[ATilde]\.83\.88) \[ATilde]\.81\
+\[RegisteredTrademark]\[ATilde]\.83\.93\[ATilde]\.83\[LeftGuillemet]\[ATilde]\
+\.83\.89\[ATilde]\.81\.8c\[ARing]\[RegisteredTrademark]\.8c\[ADoubleDot]\.ba\
+\.86\[ATilde]\.81\.97\[ATilde]\.81\.be\[ATilde]\.81\.97\[ATilde]\.81\.9f\
+\[ATilde]\.80\.82\\r\\n\[ATilde]\.83\.97\[ATilde]\.83\[DiscretionaryHyphen]\
+\[ATilde]\.82\[Cedilla]\[ATilde]\.82\[Section]\[ATilde]\.82\.af\[ATilde]\.83\
+\.88 \\\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\\\
+Research\\\\MathematicaLibraries\\\\WSTPWrapping\\\\WSTPWrappingDemo\\\\\
+WSTPWrappingDemo.sln\\\" (Rebuild \[ATilde]\.82\[DownQuestion]\[ATilde]\.83\
+\.bc\[ATilde]\.82\.b2\[ATilde]\.83\.83\[ATilde]\.83\.88) \[ATilde]\.81\
+\[RegisteredTrademark]\[ATilde]\.83\.93\[ATilde]\.83\[LeftGuillemet]\[ATilde]\
+\.83\.89\[ATilde]\.81\.8c\[ARing]\[RegisteredTrademark]\.8c\[ADoubleDot]\.ba\
+\.86\[ATilde]\.81\.97\[ATilde]\.81\.be\[ATilde]\.81\.97\[ATilde]\.81\.9f\
+\[ATilde]\.80\.82\\r\\n\\r\\n\[ATilde]\.83\.93\[ATilde]\.83\[LeftGuillemet]\
+\[ATilde]\.83\.89\[ATilde]\.81\[LeftGuillemet]\[AE]\.88\.90\[ARing]\.8a\.9f\
+\[ATilde]\.81\.97\[ATilde]\.81\.be\[ATilde]\.81\.97\[ATilde]\.81\.9f\[ATilde]\
+\.80\.82\\r\\n    0 \[ARing]\.80\.8b\[ATilde]\.81\[RegisteredTrademark]\
+\[EGrave]\[DiscretionaryHyphen]\.a6\[ARing]\.91\.8a\\r\\n    0 \[ATilde]\.82\
+\[DoubleDot]\[ATilde]\.83\[Copyright]\[ATilde]\.83\.bc\\r\\n\\r\\n\[CCedilla]\
+\[Micro]\.8c\[EAcute]\.81\.8e\[AE]\.99\.82\[EAcute]\.96\.93 00:00:00.90\\r\\n\
+\"\>"], "Echo",
+ CellChangeTimes->{3.6799926818158946`*^9}],
+
+Cell[BoxData["\<\"Microsoft (R) Build Engine \[ATilde]\.83\.90\[ATilde]\.83\
+\.bc\[ATilde]\.82\[Cedilla]\[ATilde]\.83\[Section]\[ATilde]\.83\.b3 \
+12.0.31101.0\\r\\n[Microsoft .NET Framework\[ATilde]\.80\.81\[ATilde]\.83\.90\
+\[ATilde]\.83\.bc\[ATilde]\.82\[Cedilla]\[ATilde]\.83\[Section]\[ATilde]\.83\
+\.b3 4.0.30319.34209]\\r\\nCopyright (C) Microsoft Corporation. All rights \
+reserved.\\r\\n\\r\\n\[ATilde]\.81\.93\[ATilde]\.81\[RegisteredTrademark]\
+\[ATilde]\.82\.bd\[ATilde]\.83\.aa\[ATilde]\.83\[Yen]\[ATilde]\.83\.bc\
+\[ATilde]\.82\[CenterDot]\[ATilde]\.83\[Section]\[ATilde]\.83\.b3\[ARing]\.86\
+\.85\[ATilde]\.81\[RegisteredTrademark]\[ATilde]\.83\.97\[ATilde]\.83\
+\[DiscretionaryHyphen]\[ATilde]\.82\[Cedilla]\[ATilde]\.82\[Section]\[ATilde]\
+\.82\.af\[ATilde]\.83\.88\[ATilde]\.82\.92 1 \[ARing]\.ba\.a6\[ATilde]\.81\
+\[LeftGuillemet] 1 \[ATilde]\.81\[Currency]\[ATilde]\.81\.9a\[ATilde]\.81\
+\[Currency]\[ATilde]\.83\.93\[ATilde]\.83\[LeftGuillemet]\[ATilde]\.83\.89\
+\[ATilde]\.81\.97\[ATilde]\.81\.be\[ATilde]\.81\.99\[ATilde]\.80\.82\
+\[ADoubleDot]\[Cedilla]\.a6\[EGrave]\[DownExclamation]\.8c\[ATilde]\.83\.93\
+\[ATilde]\.83\[LeftGuillemet]\[ATilde]\.83\.89\[ATilde]\.82\.92\[AE]\.9c\.89\
+\[ARing]\.8a\.b9\[ATilde]\.81\[LeftGuillemet]\[ATilde]\.81\.99\[ATilde]\.82\
+\.8b\[ATilde]\.81\[LeftGuillemet]\[ATilde]\.81\.af\[ATilde]\.80\.81\\\"/m\\\" \
+\[ATilde]\.82\.b9\[ATilde]\.82\[Currency]\[ATilde]\.83\.83\[ATilde]\.83\.81\
+\[ATilde]\.82\.92\[EGrave]\[DownQuestion]\.bd\[ARing]\.8a\[NonBreakingSpace]\
+\[ATilde]\.81\.97\[ATilde]\.81\.a6\[ATilde]\.81\.8f\[ATilde]\.81\
+\[NonBreakingSpace]\[ATilde]\.81\.95\[ATilde]\.81\.84\[ATilde]\.80\.82\\r\\\
+n12.08.2016 14:11:20 \[ATilde]\.81\[LeftGuillemet]\[ATilde]\.83\.93\[ATilde]\
+\.83\[LeftGuillemet]\[ATilde]\.83\.89\[ATilde]\.82\.92\[EAcute]\.96\.8b\
+\[ARing]\[Section]\.8b\[ATilde]\.81\.97\[ATilde]\.81\.be\[ATilde]\.81\.97\
+\[ATilde]\.81\.9f\[ATilde]\.80\.82\\r\\n\[ATilde]\.83\.8e\[ATilde]\.83\.bc\
+\[ATilde]\.83\.89 1 \[ADoubleDot]\[Cedilla]\.8a\[ATilde]\.81\
+\[RegisteredTrademark]\[ATilde]\.83\.97\[ATilde]\.83\[DiscretionaryHyphen]\
+\[ATilde]\.82\[Cedilla]\[ATilde]\.82\[Section]\[ATilde]\.82\.af\[ATilde]\.83\
+\.88 \\\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\\\
+Research\\\\MathematicaLibraries\\\\WSTPWrapping\\\\WSTPWrappingDemo\\\\\
+WSTPWrappingDemo.sln\\\" (Rebuild \[ATilde]\.82\[DownQuestion]\[ATilde]\.83\
+\.bc\[ATilde]\.82\.b2\[ATilde]\.83\.83\[ATilde]\.83\.88)\[ATilde]\.80\.82\\r\\\
+nValidateSolutionConfiguration:\\r\\n  \[ATilde]\.82\.bd\[ATilde]\.83\.aa\
+\[ATilde]\.83\[Yen]\[ATilde]\.83\.bc\[ATilde]\.82\[CenterDot]\[ATilde]\.83\
+\[Section]\[ATilde]\.83\.b3\[AE]\[Section]\.8b\[AE]\.88\.90 \\\"Debug|x64\\\" \
+\[ATilde]\.82\.92\[ATilde]\.83\.93\[ATilde]\.83\[LeftGuillemet]\[ATilde]\.83\
+\.89\[ATilde]\.81\.97\[ATilde]\.81\.a6\[ATilde]\.81\.84\[ATilde]\.81\.be\
+\[ATilde]\.81\.99\[ATilde]\.80\.82\\r\\n\[ATilde]\.83\.97\[ATilde]\.83\
+\[DiscretionaryHyphen]\[ATilde]\.82\[Cedilla]\[ATilde]\.82\[Section]\[ATilde]\
+\.82\.af\[ATilde]\.83\.88 \
+\\\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\\Research\\\
+\\MathematicaLibraries\\\\WSTPWrapping\\\\WSTPWrappingDemo\\\\\
+WSTPWrappingDemo.sln\\\" (1) \[ATilde]\.81\.af\[ATilde]\.80\.81\[ATilde]\.83\
+\.8e\[ATilde]\.83\.bc\[ATilde]\.83\.89 1 \[ADoubleDot]\[Cedilla]\.8a\[ATilde]\
+\.81\[LeftGuillemet] \
+\\\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\\Research\\\
+\\MathematicaLibraries\\\\WSTPWrapping\\\\WSTPWrappingDemo\\\\\
+WSTPWrappingDemo.vcxproj\\\" (2) \[ATilde]\.82\.92\[ATilde]\.83\.93\[ATilde]\
+\.83\[LeftGuillemet]\[ATilde]\.83\.89\[ATilde]\.81\.97\[ATilde]\.81\.a6\
+\[ATilde]\.81\.84\[ATilde]\.81\.be\[ATilde]\.81\.99 (Rebuild \[ATilde]\.82\
+\[DownQuestion]\[ATilde]\.83\.bc\[ATilde]\.82\.b2\[ATilde]\.83\.83\[ATilde]\
+\.83\.88)\[ATilde]\.80\.82\\r\\n_PrepareForClean:\\r\\n  \[ATilde]\.83\.95\
+\[ATilde]\.82\[DownExclamation]\[ATilde]\.82\[Currency]\[ATilde]\.83\
+\[LeftGuillemet] \
+\\\"x64\\\\Debug\\\\WSTPWrappingDemo.tlog\\\\WSTPWrappingDemo.lastbuildstate\\\
+\" \[ATilde]\.82\.92\[ARing]\.89\.8a\[EAcute]\.99\[Currency]\[ATilde]\.81\.97\
+\[ATilde]\.81\.a6\[ATilde]\.81\.84\[ATilde]\.81\.be\[ATilde]\.81\.99\[ATilde]\
+\.80\.82\\r\\nInitializeBuildStatus:\\r\\n  \\\"AlwaysCreate\\\" \
+\[ATilde]\.81\.8c\[AE]\.8c\.87\[ARing]\[RegisteredTrademark]\.9a\[ATilde]\.81\
+\.95\[ATilde]\.82\.8c\[ATilde]\.81\.9f\[ATilde]\.81\.9f\[ATilde]\.82\.81 \
+\\\"x64\\\\Debug\\\\WSTPWrappingDemo.tlog\\\\unsuccessfulbuild\\\" \[ATilde]\
+\.82\.92\[ADoubleDot]\.bd\.9c\[AE]\.88\.90\[ATilde]\.81\.97\[ATilde]\.81\.a6\
+\[ATilde]\.81\.84\[ATilde]\.81\.be\[ATilde]\.81\.99\[ATilde]\.80\.82\\r\\\
+nClCompile:\\r\\n  C:\\\\Program Files (x86)\\\\Microsoft Visual Studio \
+12.0\\\\VC\\\\bin\\\\x86_amd64\\\\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /D \
+_MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope \
+/Fo\\\"x64\\\\Debug\\\\\\\\\\\" /Fd\\\"x64\\\\Debug\\\\vc120.pdb\\\" /Gd /TP \
+/errorReport:queue generated\\\\WSTPExternC.cpp Source.cpp\\r\\n  \
+Source.cpp\\r\\n  WSTPExternC.cpp\\r\\n  Generating Code...\\r\\n  \
+C:\\\\Program Files (x86)\\\\Microsoft Visual Studio \
+12.0\\\\VC\\\\bin\\\\x86_amd64\\\\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /D \
+_MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope \
+/Fo\\\"x64\\\\Debug\\\\\\\\\\\" /Fd\\\"x64\\\\Debug\\\\vc120.pdb\\\" /Gd /TC \
+/errorReport:queue generated\\\\WSTPMain.c\\r\\n  WSTPMain.c\\r\\nLink:\\r\\n \
+ C:\\\\Program Files (x86)\\\\Microsoft Visual Studio \
+12.0\\\\VC\\\\bin\\\\x86_amd64\\\\link.exe /ERRORREPORT:QUEUE \
+/OUT:\\\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\\\
+Research\\\\MathematicaLibraries\\\\WSTPWrapping\\\\WSTPWrappingDemo\\\\x64\\\
+\\Debug\\\\WSTPWrappingDemo.exe\\\" /INCREMENTAL /NOLOGO kernel32.lib \
+user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib \
+ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST \
+/MANIFESTUAC:\\\"level='asInvoker' uiAccess='false'\\\" /manifest:embed \
+/DEBUG /PDB:\\\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\
+\\Research\\\\MathematicaLibraries\\\\WSTPWrapping\\\\WSTPWrappingDemo\\\\x64\
+\\\\Debug\\\\WSTPWrappingDemo.pdb\\\" /TLBID:1 /DYNAMICBASE /NXCOMPAT \
+/IMPLIB:\\\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\\\
+Research\\\\MathematicaLibraries\\\\WSTPWrapping\\\\WSTPWrappingDemo\\\\x64\\\
+\\Debug\\\\WSTPWrappingDemo.lib\\\" /MACHINE:X64 \
+x64\\\\Debug\\\\WSTPExternC.obj\\r\\n  x64\\\\Debug\\\\WSTPMain.obj\\r\\n  \
+x64\\\\Debug\\\\Source.obj\\r\\n  WSTPWrappingDemo.vcxproj -> \
+C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\\Research\\\\\
+MathematicaLibraries\\\\WSTPWrapping\\\\WSTPWrappingDemo\\\\x64\\\\Debug\\\\\
+WSTPWrappingDemo.exe\\r\\nFinalizeBuildStatus:\\r\\n  \[ATilde]\.83\.95\
+\[ATilde]\.82\[DownExclamation]\[ATilde]\.82\[Currency]\[ATilde]\.83\
+\[LeftGuillemet] \
+\\\"x64\\\\Debug\\\\WSTPWrappingDemo.tlog\\\\unsuccessfulbuild\\\" \[ATilde]\
+\.82\.92\[ARing]\.89\.8a\[EAcute]\.99\[Currency]\[ATilde]\.81\.97\[ATilde]\.81\
+\.a6\[ATilde]\.81\.84\[ATilde]\.81\.be\[ATilde]\.81\.99\[ATilde]\.80\.82\\r\\\
+n  \\\"x64\\\\Debug\\\\WSTPWrappingDemo.tlog\\\\WSTPWrappingDemo.\
+lastbuildstate\\\" \[ATilde]\.81\[RegisteredTrademark]\[ATilde]\.82\
+\[DownQuestion]\[ATilde]\.83\.83\[ATilde]\.83\.81 \
+\[ATilde]\.82\[DownQuestion]\[ATilde]\.82\.b9\[ATilde]\.82\.af\[ATilde]\.82\
+\.92\[ARing]\[RegisteredTrademark]\.9f\[EGrave]\[DownExclamation]\.8c\[ATilde]\
+\.81\.97\[ATilde]\.81\.a6\[ATilde]\.81\.84\[ATilde]\.81\.be\[ATilde]\.81\.99\
+\[ATilde]\.80\.82\\r\\n\[ATilde]\.83\.97\[ATilde]\.83\[DiscretionaryHyphen]\
+\[ATilde]\.82\[Cedilla]\[ATilde]\.82\[Section]\[ATilde]\.82\.af\[ATilde]\.83\
+\.88 \\\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\\\
+Research\\\\MathematicaLibraries\\\\WSTPWrapping\\\\WSTPWrappingDemo\\\\\
+WSTPWrappingDemo.vcxproj\\\" (Rebuild \[ATilde]\.82\[DownQuestion]\[ATilde]\
+\.83\.bc\[ATilde]\.82\.b2\[ATilde]\.83\.83\[ATilde]\.83\.88) \[ATilde]\.81\
+\[RegisteredTrademark]\[ATilde]\.83\.93\[ATilde]\.83\[LeftGuillemet]\[ATilde]\
+\.83\.89\[ATilde]\.81\.8c\[ARing]\[RegisteredTrademark]\.8c\[ADoubleDot]\.ba\
+\.86\[ATilde]\.81\.97\[ATilde]\.81\.be\[ATilde]\.81\.97\[ATilde]\.81\.9f\
+\[ATilde]\.80\.82\\r\\n\[ATilde]\.83\.97\[ATilde]\.83\[DiscretionaryHyphen]\
+\[ATilde]\.82\[Cedilla]\[ATilde]\.82\[Section]\[ATilde]\.82\.af\[ATilde]\.83\
+\.88 \\\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\MasterarbeitShared\\\\\
+Research\\\\MathematicaLibraries\\\\WSTPWrapping\\\\WSTPWrappingDemo\\\\\
+WSTPWrappingDemo.sln\\\" (Rebuild \[ATilde]\.82\[DownQuestion]\[ATilde]\.83\
+\.bc\[ATilde]\.82\.b2\[ATilde]\.83\.83\[ATilde]\.83\.88) \[ATilde]\.81\
+\[RegisteredTrademark]\[ATilde]\.83\.93\[ATilde]\.83\[LeftGuillemet]\[ATilde]\
+\.83\.89\[ATilde]\.81\.8c\[ARing]\[RegisteredTrademark]\.8c\[ADoubleDot]\.ba\
+\.86\[ATilde]\.81\.97\[ATilde]\.81\.be\[ATilde]\.81\.97\[ATilde]\.81\.9f\
+\[ATilde]\.80\.82\\r\\n\\r\\n\[ATilde]\.83\.93\[ATilde]\.83\[LeftGuillemet]\
+\[ATilde]\.83\.89\[ATilde]\.81\[LeftGuillemet]\[AE]\.88\.90\[ARing]\.8a\.9f\
+\[ATilde]\.81\.97\[ATilde]\.81\.be\[ATilde]\.81\.97\[ATilde]\.81\.9f\[ATilde]\
+\.80\.82\\r\\n    0 \[ARing]\.80\.8b\[ATilde]\.81\[RegisteredTrademark]\
+\[EGrave]\[DiscretionaryHyphen]\.a6\[ARing]\.91\.8a\\r\\n    0 \[ATilde]\.82\
+\[DoubleDot]\[ATilde]\.83\[Copyright]\[ATilde]\.83\.bc\\r\\n\\r\\n\[CCedilla]\
+\[Micro]\.8c\[EAcute]\.81\.8e\[AE]\.99\.82\[EAcute]\.96\.93 00:00:00.90\\r\\n\
+\"\>"], "Output",
+ CellChangeTimes->{
+  3.6799923625665483`*^9, {3.6799923962024994`*^9, 3.6799924022921143`*^9}, 
+   3.6799924404246974`*^9, {3.679992485411829*^9, 3.6799925116495695`*^9}, {
+   3.679992630378714*^9, 3.679992641022999*^9}, {3.679992673018922*^9, 
+   3.679992681848936*^9}}]
+}, Open  ]]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -185,7 +501,10 @@ Cell[BoxData[
   TagBox[
    RowBox[{"print", "[", "string_String", "]"}],
    HoldForm], "}"}]], "Output",
- CellChangeTimes->{3.6799922044832926`*^9}]
+ CellChangeTimes->{
+  3.6799922044832926`*^9, 3.6799924405398493`*^9, {3.679992485535986*^9, 
+   3.67999251176071*^9}, {3.6799926305038724`*^9, 3.6799926411451483`*^9}, {
+   3.679992673140069*^9, 3.679992681975094*^9}}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -209,35 +528,49 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
+Cell[558, 20, 108, 1, 64, "Chapter"],
 Cell[CellGroupData[{
-Cell[580, 22, 170, 2, 64, "Chapter"],
-Cell[753, 26, 168, 3, 30, "Text"],
+Cell[691, 25, 170, 2, 53, "Chapter"],
+Cell[864, 29, 168, 3, 30, "Text"],
+Cell[1035, 34, 121, 1, 30, "Text"],
 Cell[CellGroupData[{
-Cell[946, 33, 1143, 27, 112, "Input"],
-Cell[2092, 62, 602, 15, 31, "Output"]
+Cell[1181, 39, 1143, 27, 112, "Input"],
+Cell[2327, 68, 785, 18, 31, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2743, 83, 106, 1, 64, "Chapter"],
+Cell[3161, 92, 106, 1, 64, "Chapter"],
 Cell[CellGroupData[{
-Cell[2874, 88, 167, 3, 31, "Input"],
-Cell[3044, 93, 215, 3, 52, "Output"]
+Cell[3292, 97, 167, 3, 31, "Input"],
+Cell[3462, 102, 393, 6, 52, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3296, 101, 1859, 39, 472, "Input"],
-Cell[5158, 142, 317, 4, 31, "Output"],
-Cell[5478, 148, 306, 4, 31, "Output"],
-Cell[5787, 154, 311, 4, 31, "Output"]
+Cell[3892, 113, 1859, 39, 472, "Input"],
+Cell[5754, 154, 499, 6, 31, "Output"],
+Cell[6256, 162, 488, 6, 31, "Output"],
+Cell[6747, 170, 492, 6, 31, "Output"]
 }, Open  ]]
 }, Open  ]],
-Cell[6125, 162, 95, 1, 64, "Chapter"],
 Cell[CellGroupData[{
-Cell[6245, 167, 95, 1, 53, "Chapter"],
+Cell[7288, 182, 95, 1, 64, "Chapter"],
 Cell[CellGroupData[{
-Cell[6365, 172, 325, 8, 31, "Input"],
-Cell[6693, 182, 163, 5, 31, "Output"]
+Cell[7408, 187, 176, 3, 31, "Input"],
+Cell[7587, 192, 167, 2, 62, "Echo"],
+Cell[7757, 196, 274, 4, 72, "Output"]
 }, Open  ]],
-Cell[6871, 190, 141, 2, 31, "Input"]
+Cell[CellGroupData[{
+Cell[8068, 205, 150, 2, 31, "Input"],
+Cell[8221, 209, 9572, 131, 1886, "Echo"],
+Cell[17796, 342, 9803, 135, 2052, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27648, 483, 95, 1, 64, "Chapter"],
+Cell[CellGroupData[{
+Cell[27768, 488, 325, 8, 31, "Input"],
+Cell[28096, 498, 339, 8, 31, "Output"]
+}, Open  ]],
+Cell[28450, 509, 141, 2, 31, "Input"]
 }, Open  ]]
 }
 ]

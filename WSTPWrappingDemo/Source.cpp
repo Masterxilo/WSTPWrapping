@@ -5,5 +5,5 @@
 #include <paulwl.h>
 
 void print(_In_z_ const char* const string) {
-    printf("%s\n", string);
+    printf("---\n%s\n===\n", string);
 }
