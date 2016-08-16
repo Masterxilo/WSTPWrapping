@@ -1,0 +1,842 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     33271,        834]
+NotebookOptionsPosition[     30594,        737]
+NotebookOutlinePosition[     30935,        752]
+CellTagsIndexPosition[     30892,        749]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[""], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.6799989919064503`*^9, 3.679998997418312*^9}, 
+   3.6800019557716603`*^9}],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\\
+MasterarbeitShared\\\\Research\\\\MathematicaLibraries\\\\WSTPWrapping\\\\\
+WSTPWrappingWithCUDA\"\>"], "Output",
+ CellChangeTimes->{3.679998999939456*^9, 3.680001941972458*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"SetDirectory", "@", 
+  RowBox[{"NotebookDirectory", "[", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"cudaIncludes", "=", 
+  "\"\<\n\n#include <cuda.h>\n#include <cuda_runtime_api.h>\n#include \
+<cuda_runtime.h>\n#include <device_functions.h>\n#include \
+<device_launch_parameters.h>\n#pragma comment(lib,\\\"cudart\\\")\n\>\""}], "\
+\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{
+  "\"\<cudaIncludes.h\>\"", ",", "cudaIncludes", ",", "\"\<String\>\""}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.679998392785882*^9, 3.679998397958358*^9}, {
+  3.679998975578083*^9, 3.6799989756761813`*^9}, {3.6800019586212325`*^9, 
+  3.6800019589116087`*^9}}],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\\
+MasterarbeitShared\\\\Research\\\\MathematicaLibraries\\\\WSTPWrapping\\\\\
+WSTPWrappingWithCUDA\"\>"], "Output",
+ CellChangeTimes->{
+  3.679998976111725*^9, 3.679999026402485*^9, {3.68000045358227*^9, 
+   3.680000456503916*^9}, 3.680003197673271*^9}],
+
+Cell[BoxData["\<\"\\n\\n#include <cuda.h>\\n#include \
+<cuda_runtime_api.h>\\n#include <cuda_runtime.h>\\n#include \
+<device_functions.h>\\n#include <device_launch_parameters.h>\\n#pragma \
+comment(lib,\\\"cudart\\\")\\n\"\>"], "Output",
+ CellChangeTimes->{
+  3.679998976111725*^9, 3.679999026402485*^9, {3.68000045358227*^9, 
+   3.680000456503916*^9}, 3.680003197675272*^9}],
+
+Cell[BoxData["\<\"cudaIncludes.h\"\>"], "Output",
+ CellChangeTimes->{
+  3.679998976111725*^9, 3.679999026402485*^9, {3.68000045358227*^9, 
+   3.680000456503916*^9}, 3.6800031976772757`*^9}]
+}, Open  ]],
+
+Cell["0. Run WSTPWrapping.nb", "Chapter",
+ CellChangeTimes->{{3.67999290651828*^9, 3.6799929089483185`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["1. Write code, extract definitions", "Chapter",
+ CellChangeTimes->{{3.679991070994943*^9, 3.679991073573162*^9}, {
+  3.679991305889037*^9, 3.6799913092252007`*^9}}],
+
+Cell["\<\
+Put the definitions of functions you created here, including sal annotations\
+\>", "Text",
+ CellChangeTimes->{{3.6799911002124405`*^9, 3.679991111796854*^9}}],
+
+Cell["A parser would automate this process.", "Text",
+ CellChangeTimes->{{3.6799924231341395`*^9, 3.679992437373911*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"functions", "=", 
+  RowBox[{
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"function", "[", 
+      RowBox[{
+       RowBox[{"{", "\"\<int\>\"", "}"}], ",", "\"\<sqr\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{"argument", "[", 
+         RowBox[{
+          RowBox[{"{", "\"\<int\>\"", "}"}], ",", "\"\<x\>\""}], "]"}], 
+        "}"}]}], "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"function", "[", 
+      RowBox[{
+       RowBox[{"{", "\"\<int\>\"", "}"}], ",", "\"\<tid\>\"", ",", 
+       RowBox[{"{", "}"}]}], "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"function", "[", 
+      RowBox[{
+       RowBox[{"{", "\"\<int\>\"", "}"}], ",", "\"\<sqrtid\>\"", ",", 
+       RowBox[{"{", "}"}]}], "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"(*", "\[IndentingNewLine]", 
+      RowBox[{"int", " ", "readAtTid", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"_In", "_reads", "_", 
+          RowBox[{"(", "n", ")"}], " ", "int", " ", "const", "*", "const", 
+          " ", "v"}], ",", 
+         RowBox[{"int", " ", "n"}]}], ")"}]}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"function", "[", 
+      RowBox[{
+       RowBox[{"{", "\"\<int\>\"", "}"}], ",", "\"\<readAtTid\>\"", ",", 
+       RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"argument", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+            "\"\<int\>\"", ",", "\"\<const\>\"", ",", "\"\<*\>\"", ",", 
+             "\"\<const\>\""}], "}"}], ",", 
+           RowBox[{"sal", "[", 
+            RowBox[{"\"\<_In_reads_\>\"", ",", "\"\<n\>\""}], "]"}], ",", 
+           "\"\<v\>\""}], "]"}], "\[IndentingNewLine]", ",", 
+         RowBox[{"argument", "[", 
+          RowBox[{
+           RowBox[{"{", "\"\<int\>\"", "}"}], ",", "\"\<n\>\""}], "]"}]}], 
+        "\[IndentingNewLine]", "}"}]}], "]"}]}], "\[IndentingNewLine]", "}"}],
+    "/.", 
+   RowBox[{
+    RowBox[{"function", "|", "argument"}], "\[Rule]", "List"}]}]}]], "Input",
+ CellChangeTimes->{{3.679991112718004*^9, 3.6799911618012486`*^9}, {
+   3.679991223196858*^9, 3.679991293706838*^9}, {3.6799918051690245`*^9, 
+   3.6799918571428766`*^9}, {3.6799921570250607`*^9, 
+   3.6799921584888873`*^9}, {3.6799985329968176`*^9, 3.679998548567261*^9}, {
+   3.6800006732203293`*^9, 3.680000684843874*^9}, {3.6800015464389067`*^9, 
+   3.6800016187451477`*^9}, 3.680001747737095*^9, 3.6800018866063724`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", "\<\"int\"\>", "}"}], ",", "\<\"sqr\"\>", ",", 
+     RowBox[{"{", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "\<\"int\"\>", "}"}], ",", "\<\"x\"\>"}], "}"}], "}"}]}],
+     "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", "\<\"int\"\>", "}"}], ",", "\<\"tid\"\>", ",", 
+     RowBox[{"{", "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", "\<\"int\"\>", "}"}], ",", "\<\"sqrtid\"\>", ",", 
+     RowBox[{"{", "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", "\<\"int\"\>", "}"}], ",", "\<\"readAtTid\"\>", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          
+          RowBox[{"\<\"int\"\>", ",", "\<\"const\"\>", ",", "\<\"*\"\>", 
+           ",", "\<\"const\"\>"}], "}"}], ",", 
+         RowBox[{"sal", "[", 
+          RowBox[{"\<\"_In_reads_\"\>", ",", "\<\"n\"\>"}], "]"}], 
+         ",", "\<\"v\"\>"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", "\<\"int\"\>", "}"}], ",", "\<\"n\"\>"}], "}"}]}], 
+      "}"}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.6799917018020477`*^9, 3.679991736603486*^9, 3.67999179227395*^9, 
+   3.6799918575984783`*^9, 3.679991983484558*^9, 3.679992159186768*^9, 
+   3.679992439309289*^9, {3.6799924843925724`*^9, 3.6799925105501795`*^9}, {
+   3.6799926291952367`*^9, 3.679992639905585*^9}, {3.6799926718074074`*^9, 
+   3.6799926806243935`*^9}, 3.679999027906352*^9, {3.6800004536533604`*^9, 
+   3.6800004584964023`*^9}, 3.680000687609291*^9, 3.680001621330369*^9, 
+   3.680001748095527*^9, 3.680001782101976*^9, 3.680001887028885*^9, 
+   3.680003199548626*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2. Generate WSTP code", "Chapter",
+ CellChangeTimes->{{3.679991065443015*^9, 3.679991082018734*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SetDirectory", "@", 
+  RowBox[{"NotebookDirectory", "[", "]"}]}]], "Input",
+ CellChangeTimes->{{3.6799909846231875`*^9, 3.679990993172838*^9}}],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\\
+MasterarbeitShared\\\\Research\\\\MathematicaLibraries\\\\WSTPWrapping\\\\\
+WSTPWrappingWithCUDA\"\>"], "Output",
+ CellChangeTimes->{
+  3.6799909937245417`*^9, 3.679992439370365*^9, {3.679992484453642*^9, 
+   3.6799925106052685`*^9}, {3.6799926292593164`*^9, 
+   3.6799926399746866`*^9}, {3.67999267187449*^9, 3.6799926806934795`*^9}, 
+   3.680000690022294*^9, 3.6800032017363396`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"externCUDAName", "=", 
+   RowBox[{
+    RowBox[{"#", "<>", "\"\<_CUDA\>\""}], "&"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"buildCUDATemplateFileSpecForFunction", "[", 
+   RowBox[{
+    RowBox[{"type", ":", 
+     RowBox[{"{", "__String", "}"}]}], ",", "name_String", ",", 
+    RowBox[{"args", ":", 
+     RowBox[{"{", 
+      RowBox[{"cargPattern", "..."}], "}"}]}], ",", 
+    RowBox[{"usage_String:", "\"\<\>\""}]}], "]"}], ":=", 
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+     "StringTemplate", "[", 
+      "\"\<\n:Begin:\n:Function:       ``\n:Pattern:        ``[``]\n\
+:Arguments:      ``\n:ArgumentTypes:  { Manual }\n:ReturnType:     Manual\n\
+:End:\n:Evaluate: ``::usage = \\\"``\\\"\n\>\"", "\[IndentingNewLine]", "]"}],
+      "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"externCUDAName", "@", "name"}], ",", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"name", "<>", "\"\<CUDA\>\""}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "\"\<gridDim_Integer\>\"", ",", " ", "\"\<blockDim_Integer\>\""}], 
+         "}"}], "~", "Join", "~", 
+        RowBox[{
+        "MakeArgumentPatternStringForSalAnnotatedCArguments", "[", "args", 
+         "]"}]}], "//", "CommaRiffle"}], ",", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"\"\<gridDim\>\"", ",", " ", "\"\<blockDim\>\""}], "}"}], "~",
+        "Join", "~", 
+       RowBox[{
+       "MakeArgumentNamesForSalAnnotatedCArguments", "[", "args", "]"}]}], 
+      ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"name", "<>", "\"\<CUDA\>\""}], ",", "usage"}], 
+     "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"buildExternCUDAFunctionForFunction", "[", 
+    RowBox[{
+     RowBox[{"type", ":", 
+      RowBox[{"{", "__String", "}"}]}], ",", "name_String", ",", 
+     RowBox[{"args", ":", 
+      RowBox[{"{", 
+       RowBox[{"cargPattern", "..."}], "}"}]}]}], "]"}], ":=", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"CFunction", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", "\"\<__host__ __device__\>\"", "}"}], "~", "Join", "~", 
+        "type"}], ",", "name", ",", 
+       RowBox[{"stripSal", "@", "args"}]}], "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"externCVoidArglessFunction", "[", 
+      RowBox[{
+       RowBox[{"externCName", "@", "name"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"MakeWSTPWrapperCodeForSalAnnotatedCPrototype", "[", 
+        RowBox[{"type", ",", "name", ",", "args", ",", "False"}], "]"}]}], 
+      "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"makeCudaKernelForFunction", "[", 
+      RowBox[{"type", ",", "name", ",", "args"}], "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"externCVoidArglessFunction", "[", 
+      RowBox[{
+       RowBox[{"externCUDAName", "@", "name"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"MakeWSTPWrapperCodeForSalAnnotatedCPrototype", "[", 
+        RowBox[{"type", ",", "name", ",", "args", ",", "True"}], "]"}]}], 
+      "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "}"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"buildCUDATemplateFileSpecForFunction", "@@", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", "\"\<int\>\"", "}"}], ",", "\"\<sqr\>\"", ",", 
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", "\"\<int\>\"", "}"}], ",", "\"\<x\>\""}], "}"}], "}"}]}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"buildExternCUDAFunctionForFunction", "@@", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", "\"\<int\>\"", "}"}], ",", "\"\<sqr\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", "\"\<int\>\"", "}"}], ",", "\"\<x\>\""}], "}"}], 
+       "}"}]}], "}"}]}], "//", "ToCCodeString"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"buildExternCUDAFunctionForFunction", "@@", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", "\"\<int\>\"", "}"}], ",", "\"\<readAtTid\>\"", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<int\>\"", ",", "\"\<const\>\"", ",", "\"\<*\>\"", ",", 
+           "\"\<const\>\""}], "}"}], ",", 
+         RowBox[{"sal", "[", 
+          RowBox[{"\"\<_In_reads_\>\"", ",", "\"\<n\>\""}], "]"}], ",", 
+         "\"\<v\>\""}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", "\"\<int\>\"", "}"}], ",", "\"\<n\>\""}], "}"}]}], 
+      "}"}]}], "}"}]}], "//", "ToCCodeString"}]}], "Input",
+ CellChangeTimes->{{3.6799991966559134`*^9, 3.6799992679008102`*^9}, {
+   3.6799993629694347`*^9, 3.679999480398977*^9}, {3.6799997641390176`*^9, 
+   3.6799997940633564`*^9}, {3.6800008971867886`*^9, 3.680000903257363*^9}, {
+   3.680001828389719*^9, 3.6800018381599073`*^9}, 3.680001890388077*^9}],
+
+Cell[BoxData["\<\"\\n:Begin:\\n:Function:       sqr_CUDA\\n:Pattern:        \
+sqrCUDA[gridDim_Integer, blockDim_Integer, x : _Integer]\\n:Arguments:      \
+{gridDim, blockDim, x}\\n:ArgumentTypes:  { Manual }\\n:ReturnType:     \
+Manual\\n:End:\\n:Evaluate: sqrCUDA::usage = \\\"\\\"\\n\"\>"], "Output",
+ CellChangeTimes->{{3.679999429692707*^9, 3.679999483085312*^9}, 
+   3.68000046016148*^9, 3.6800006964863596`*^9, 3.680000903843093*^9, 
+   3.68000162559067*^9, {3.6800018319461546`*^9, 3.6800018384713135`*^9}, 
+   3.6800018907825837`*^9, 3.6800032024041977`*^9}],
+
+Cell[BoxData["\<\"__host__ __device__ int sqr(int x);\\nextern \\\"C\\\" void \
+sqr_()\\n{\\nWSGet(int, x, Integer32);\\nint _result_;\\n_result_ = \
+sqr(x);\\nWSPut(Integer32, _result_);\\n}\\n__global__ void KERNEL_sqr(int x, \
+int * _returns_)\\n{\\n_returns_[linear_global_threadId()] = \
+sqr(x);\\n}\\nextern \\\"C\\\" void sqr_CUDA()\\n{\\nWSGet(int, gridDim, \
+Integer32);\\nWSGet(int, blockDim, Integer32);\\nWSGet(int, x, \
+Integer32);\\nint * _returns_;\\n_returns_ = tmalloc<int>(gridDim * \
+blockDim);\\nCUDAKERNEL_LAUNCH(KERNEL_sqr, gridDim, blockDim, x, \
+_returns_);\\nWSPutList(Integer32, _returns_, gridDim * \
+blockDim);\\nmemoryFree(_returns_);\\n}\\n\"\>"], "Output",
+ CellChangeTimes->{{3.679999429692707*^9, 3.679999483085312*^9}, 
+   3.68000046016148*^9, 3.6800006964863596`*^9, 3.680000903843093*^9, 
+   3.68000162559067*^9, {3.6800018319461546`*^9, 3.6800018384713135`*^9}, 
+   3.6800018907825837`*^9, 3.680003202406251*^9}],
+
+Cell[BoxData["\<\"__host__ __device__ int readAtTid(int const * const v, int \
+n);\\nextern \\\"C\\\" void readAtTid_()\\n{\\nWSGetList(int, v, v_length, \
+Integer32);\\nint n;\\nn = v_length;\\nint _result_;\\n_result_ = \
+readAtTid(v, n);\\nWSPut(Integer32, _result_);\\nWSReleaseList(v, v_length, \
+Integer32);\\n}\\n__global__ void KERNEL_readAtTid(int const * const v, int \
+n, int * _returns_)\\n{\\n_returns_[linear_global_threadId()] = readAtTid(v, \
+n);\\n}\\nextern \\\"C\\\" void readAtTid_CUDA()\\n{\\nWSGet(int, gridDim, \
+Integer32);\\nWSGet(int, blockDim, Integer32);\\nWSGetList(int, v, v_length, \
+Integer32);\\nint * v_in;\\nv_in = mallocmemcpy(v, v_length);\\nint n;\\nn = \
+v_length;\\nint * _returns_;\\n_returns_ = tmalloc<int>(gridDim * \
+blockDim);\\nCUDAKERNEL_LAUNCH(KERNEL_readAtTid, gridDim, blockDim, v_in, n, \
+_returns_);\\nWSPutList(Integer32, _returns_, gridDim * \
+blockDim);\\nWSReleaseList(v, v_length, \
+Integer32);\\nmemoryFree(v_in);\\nmemoryFree(_returns_);\\n}\\n\"\>"], \
+"Output",
+ CellChangeTimes->{{3.679999429692707*^9, 3.679999483085312*^9}, 
+   3.68000046016148*^9, 3.6800006964863596`*^9, 3.680000903843093*^9, 
+   3.68000162559067*^9, {3.6800018319461546`*^9, 3.6800018384713135`*^9}, 
+   3.6800018907825837`*^9, 3.6800032024071836`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"pre", "=", "\"\<generated\\\\\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"SetDirectory", "@", 
+  RowBox[{"NotebookDirectory", "[", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"pre", "<>", "\"\<WSTPTemplateFile.tm\>\""}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"StringJoin", "[", "\[IndentingNewLine]", 
+      RowBox[{"buildTemplateFileSpecForFunction", "@@@", "functions"}], 
+      "\[IndentingNewLine]", "]"}], "<>", 
+     RowBox[{"StringJoin", "[", "\[IndentingNewLine]", 
+      RowBox[{"buildCUDATemplateFileSpecForFunction", "@@@", "functions"}], 
+      "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", ",", 
+    "\"\<String\>\""}], "]"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"pre", "<>", "\"\<WSTPMain.c\>\""}], ",", "\[IndentingNewLine]", 
+    RowBox[{"RunProcess", "[", 
+     RowBox[{
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+       "\"\<J:\\\\Masterarbeit\\\\Implementation\\\\CPPLibraries\\\\\
+Mathematica\\\\wsprep.exe\>\"", ",", "\[IndentingNewLine]", 
+        RowBox[{"pre", "<>", "\"\<WSTPTemplateFile.tm\>\""}]}], 
+       "\[IndentingNewLine]", "}"}], ",", "\"\<StandardOutput\>\""}], "]"}], 
+    ",", "\"\<String\>\""}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"pre", "<>", "\"\<WSTPExternC.cu\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<#include \\\"cudaIncludes.h\\\"\n\>\"", "<>", "\[IndentingNewLine]", 
+    "$WSTPWrappingCDefinesCUDA", "<>", "\[IndentingNewLine]", 
+    RowBox[{"ToCCodeString", "[", "\[IndentingNewLine]", 
+     RowBox[{"buildExternCUDAFunctionForFunction", "@@@", "functions"}], 
+     "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", ",", 
+   "\"\<String\>\""}], "]"}]}], "Input",
+ CellChangeTimes->{{3.679990938192235*^9, 3.6799910491146765`*^9}, {
+   3.6799915969592257`*^9, 3.679991772002651*^9}, {3.6799918769265614`*^9, 
+   3.6799919119152193`*^9}, {3.679992030105715*^9, 3.679992049347704*^9}, {
+   3.679998402863456*^9, 3.679998402956558*^9}, {3.679998559346697*^9, 
+   3.679998570002993*^9}, {3.6799989615095043`*^9, 3.679998973816861*^9}, {
+   3.6799991386885834`*^9, 3.679999166704543*^9}, {3.6799993793528833`*^9, 
+   3.6799993799326005`*^9}, {3.679999832531356*^9, 3.6799998395221043`*^9}, 
+   3.6800019628525114`*^9}],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\Paul\\\\Dropbox\\\\Paul\\\\\
+MasterarbeitShared\\\\Research\\\\MathematicaLibraries\\\\WSTPWrapping\\\\\
+WSTPWrappingWithCUDA\"\>"], "Output",
+ CellChangeTimes->{{3.679991772455205*^9, 3.6799917932741823`*^9}, {
+   3.6799918663143363`*^9, 3.6799918793325634`*^9}, 3.6799919131627755`*^9, 
+   3.6799919841753836`*^9, {3.679992030698433*^9, 3.6799920503139086`*^9}, 
+   3.6799921605554657`*^9, 3.6799924393933916`*^9, {3.6799924844756436`*^9, 
+   3.6799925106312804`*^9}, {3.6799926292863345`*^9, 
+   3.6799926400027213`*^9}, {3.6799926719035125`*^9, 3.6799926807235174`*^9}, 
+   3.6799997003093586`*^9, 3.6799998421373267`*^9, 3.6800004627276816`*^9, 
+   3.6800005219946337`*^9, 3.6800005572215886`*^9, 3.6800007007697043`*^9, 
+   3.680000912496891*^9, 3.680001627165635*^9, 3.6800017505195527`*^9, 
+   3.680001786473415*^9, 3.680001902322968*^9, {3.680001945402722*^9, 
+   3.68000196594936*^9}, 3.680003204606926*^9, 3.6800032365567884`*^9}],
+
+Cell[BoxData["\<\"generated\\\\WSTPTemplateFile.tm\"\>"], "Output",
+ CellChangeTimes->{{3.679991772455205*^9, 3.6799917932741823`*^9}, {
+   3.6799918663143363`*^9, 3.6799918793325634`*^9}, 3.6799919131627755`*^9, 
+   3.6799919841753836`*^9, {3.679992030698433*^9, 3.6799920503139086`*^9}, 
+   3.6799921605554657`*^9, 3.6799924393933916`*^9, {3.6799924844756436`*^9, 
+   3.6799925106312804`*^9}, {3.6799926292863345`*^9, 
+   3.6799926400027213`*^9}, {3.6799926719035125`*^9, 3.6799926807235174`*^9}, 
+   3.6799997003093586`*^9, 3.6799998421373267`*^9, 3.6800004627276816`*^9, 
+   3.6800005219946337`*^9, 3.6800005572215886`*^9, 3.6800007007697043`*^9, 
+   3.680000912496891*^9, 3.680001627165635*^9, 3.6800017505195527`*^9, 
+   3.680001786473415*^9, 3.680001902322968*^9, {3.680001945402722*^9, 
+   3.68000196594936*^9}, 3.680003204606926*^9, 3.6800032366088524`*^9}],
+
+Cell[BoxData["\<\"generated\\\\WSTPMain.c\"\>"], "Output",
+ CellChangeTimes->{{3.679991772455205*^9, 3.6799917932741823`*^9}, {
+   3.6799918663143363`*^9, 3.6799918793325634`*^9}, 3.6799919131627755`*^9, 
+   3.6799919841753836`*^9, {3.679992030698433*^9, 3.6799920503139086`*^9}, 
+   3.6799921605554657`*^9, 3.6799924393933916`*^9, {3.6799924844756436`*^9, 
+   3.6799925106312804`*^9}, {3.6799926292863345`*^9, 
+   3.6799926400027213`*^9}, {3.6799926719035125`*^9, 3.6799926807235174`*^9}, 
+   3.6799997003093586`*^9, 3.6799998421373267`*^9, 3.6800004627276816`*^9, 
+   3.6800005219946337`*^9, 3.6800005572215886`*^9, 3.6800007007697043`*^9, 
+   3.680000912496891*^9, 3.680001627165635*^9, 3.6800017505195527`*^9, 
+   3.680001786473415*^9, 3.680001902322968*^9, {3.680001945402722*^9, 
+   3.68000196594936*^9}, 3.680003204606926*^9, 3.680003236610855*^9}],
+
+Cell[BoxData["\<\"generated\\\\WSTPExternC.cu\"\>"], "Output",
+ CellChangeTimes->{{3.679991772455205*^9, 3.6799917932741823`*^9}, {
+   3.6799918663143363`*^9, 3.6799918793325634`*^9}, 3.6799919131627755`*^9, 
+   3.6799919841753836`*^9, {3.679992030698433*^9, 3.6799920503139086`*^9}, 
+   3.6799921605554657`*^9, 3.6799924393933916`*^9, {3.6799924844756436`*^9, 
+   3.6799925106312804`*^9}, {3.6799926292863345`*^9, 
+   3.6799926400027213`*^9}, {3.6799926719035125`*^9, 3.6799926807235174`*^9}, 
+   3.6799997003093586`*^9, 3.6799998421373267`*^9, 3.6800004627276816`*^9, 
+   3.6800005219946337`*^9, 3.6800005572215886`*^9, 3.6800007007697043`*^9, 
+   3.680000912496891*^9, 3.680001627165635*^9, 3.6800017505195527`*^9, 
+   3.680001786473415*^9, 3.680001902322968*^9, {3.680001945402722*^9, 
+   3.68000196594936*^9}, 3.680003204606926*^9, 3.680003236612857*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["3. Compile", "Chapter",
+ CellChangeTimes->{{3.679991084273526*^9, 3.679991085908551*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"TaskKill", "@", "\"\<WSTPWrappingWithCUDA.exe\>\""}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.6799925216770716`*^9, 3.679992531708583*^9}, 
+   3.67999262168487*^9, {3.6800001727679143`*^9, 3.680000174419986*^9}, 
+   3.680000208884961*^9, 3.6800007351706448`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"MSBuild", "@", "\"\<WSTPWrappingWithCUDA.sln\>\""}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.679992343635925*^9, 3.6799923518161516`*^9}, {
+   3.6800001780244374`*^9, 3.6800002077945833`*^9}, 3.680000733662763*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["4. Use", "Chapter",
+ CellChangeTimes->{{3.6799910874254436`*^9, 3.6799910883386335`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Install", "[", 
+   RowBox[{
+    RowBox[{"NotebookDirectory", "[", "]"}], "<>", 
+    "\"\<x64/Debug/WSTPWrappingWithCUDA.exe\>\""}], "]"}], "//", 
+  "LinkPatterns"}]], "Input",
+ CellChangeTimes->{{3.6799921003353243`*^9, 3.6799921015859013`*^9}, {
+  3.679992171734414*^9, 3.679992204136861*^9}, {3.6800001864769993`*^9, 
+  3.680000202924507*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   TagBox[
+    RowBox[{"sqr", "[", "x_Integer", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"tid", "[", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"sqrtid", "[", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"readAtTid", "[", 
+     RowBox[{"v", ":", 
+      RowBox[{"{", "___Integer", "}"}]}], "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"sqrCUDA", "[", 
+     RowBox[{"gridDim_Integer", ",", "blockDim_Integer", ",", "x_Integer"}], 
+     "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"tidCUDA", "[", 
+     RowBox[{"gridDim_Integer", ",", "blockDim_Integer"}], "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"sqrtidCUDA", "[", 
+     RowBox[{"gridDim_Integer", ",", "blockDim_Integer"}], "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"readAtTidCUDA", "[", 
+     RowBox[{"gridDim_Integer", ",", "blockDim_Integer", ",", 
+      RowBox[{"v", ":", 
+       RowBox[{"{", "___Integer", "}"}]}]}], "]"}],
+    HoldForm]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.6799922044832926`*^9, 3.6799924405398493`*^9, {3.679992485535986*^9, 
+   3.67999251176071*^9}, {3.6799926305038724`*^9, 3.6799926411451483`*^9}, {
+   3.679992673140069*^9, 3.679992681975094*^9}, {3.680000189607891*^9, 
+   3.6800002134306164`*^9}, 3.6800002743977027`*^9, 3.6800003611519403`*^9, 
+   3.6800005916355515`*^9, 3.68000075450976*^9, 3.680000928153427*^9, 
+   3.6800010617561584`*^9, 3.680001356068389*^9, 3.6800019901585817`*^9, 
+   3.6800032599860272`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"sqr", "@", "2"}]], "Input",
+ CellChangeTimes->{{3.679992207904561*^9, 3.6799922129868884`*^9}, {
+  3.68000021743261*^9, 3.680000219217887*^9}}],
+
+Cell[BoxData["4"], "Output",
+ CellChangeTimes->{3.6800002196103272`*^9, 3.6800003178729377`*^9, 
+  3.680000375150424*^9, 3.6800005939584284`*^9, 3.68000075758664*^9, 
+  3.680000928225518*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"tid", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.6800007623885903`*^9, 3.6800007651099854`*^9}}],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.680000765458439*^9, 3.6800009282986083`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"sqrtid", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.680000770756031*^9, 3.68000077159608*^9}}],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.680000772123754*^9, 3.680000928373702*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"tidCUDA", "[", 
+  RowBox[{"10", ",", "10"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6800007818719177`*^9, 3.6800007840536647`*^9}, {
+  3.6800008362527723`*^9, 3.6800008369446335`*^9}, {3.6800009379767*^9, 
+  3.6800009415161004`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0", ",", "1", ",", "2", ",", "3", ",", "4", ",", "5", ",", "6", ",", "7", 
+   ",", "8", ",", "9", ",", "10", ",", "11", ",", "12", ",", "13", ",", "14", 
+   ",", "15", ",", "16", ",", "17", ",", "18", ",", "19", ",", "20", ",", 
+   "21", ",", "22", ",", "23", ",", "24", ",", "25", ",", "26", ",", "27", 
+   ",", "28", ",", "29", ",", "30", ",", "31", ",", "32", ",", "33", ",", 
+   "34", ",", "35", ",", "36", ",", "37", ",", "38", ",", "39", ",", "40", 
+   ",", "41", ",", "42", ",", "43", ",", "44", ",", "45", ",", "46", ",", 
+   "47", ",", "48", ",", "49", ",", "50", ",", "51", ",", "52", ",", "53", 
+   ",", "54", ",", "55", ",", "56", ",", "57", ",", "58", ",", "59", ",", 
+   "60", ",", "61", ",", "62", ",", "63", ",", "64", ",", "65", ",", "66", 
+   ",", "67", ",", "68", ",", "69", ",", "70", ",", "71", ",", "72", ",", 
+   "73", ",", "74", ",", "75", ",", "76", ",", "77", ",", "78", ",", "79", 
+   ",", "80", ",", "81", ",", "82", ",", "83", ",", "84", ",", "85", ",", 
+   "86", ",", "87", ",", "88", ",", "89", ",", "90", ",", "91", ",", "92", 
+   ",", "93", ",", "94", ",", "95", ",", "96", ",", "97", ",", "98", ",", 
+   "99"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.6800007844130745`*^9, 3.6800008381190853`*^9, {3.6800009287802086`*^9, 
+   3.6800009419446507`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"sqrtidCUDA", "[", 
+  RowBox[{"1", ",", "1"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6800002243822837`*^9, 3.680000226654118*^9}, {
+  3.680000598596217*^9, 3.680000607959901*^9}, {3.680000840612196*^9, 
+  3.680000844153653*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", "0", "}"}]], "Output",
+ CellChangeTimes->{
+  3.68000025957722*^9, 3.680000356267861*^9, 3.6800004535111833`*^9, {
+   3.680000595159927*^9, 3.6800006084605227`*^9}, 3.6800007761617947`*^9, 
+   3.6800008446372185`*^9, 3.6800009288512974`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"sqrtidCUDA", "[", 
+  RowBox[{"1", ",", "10"}], "]"}]], "Input",
+ CellChangeTimes->{3.680000932978466*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0", ",", "1", ",", "4", ",", "9", ",", "16", ",", "25", ",", "36", ",", 
+   "49", ",", "64", ",", "81"}], "}"}]], "Output",
+ CellChangeTimes->{3.6800009334640703`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"readAtTid", "[", 
+  RowBox[{"{", "42", "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6800019933045077`*^9, 3.6800020025800667`*^9}}],
+
+Cell[BoxData["42"], "Output",
+ CellChangeTimes->{{3.680001999406121*^9, 3.680002003092725*^9}, 
+   3.6800032658072863`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"readAtTidCUDA", "[", "l_List", "]"}], ":=", 
+  RowBox[{"readAtTidCUDA", "[", 
+   RowBox[{
+    RowBox[{"Length", "@", "l"}], ",", "1", ",", "l"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"readAtTidCUDA", "@", 
+  RowBox[{"RandomInteger", "[", 
+   RowBox[{"10", ",", "100"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.6800020088799276`*^9, 3.6800020154381247`*^9}, {
+  3.680003279263094*^9, 3.6800033346411753`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0", ",", "6", ",", "9", ",", "2", ",", "7", ",", "7", ",", "4", ",", "4", 
+   ",", "5", ",", "1", ",", "7", ",", "0", ",", "3", ",", "6", ",", "0", ",", 
+   "5", ",", "9", ",", "7", ",", "1", ",", "8", ",", "3", ",", "0", ",", "4", 
+   ",", "10", ",", "0", ",", "8", ",", "3", ",", "7", ",", "7", ",", "1", ",",
+    "0", ",", "4", ",", "9", ",", "3", ",", "2", ",", "4", ",", "7", ",", "1",
+    ",", "3", ",", "4", ",", "3", ",", "3", ",", "6", ",", "1", ",", "1", ",",
+    "7", ",", "5", ",", "4", ",", "5", ",", "9", ",", "8", ",", "6", ",", "6",
+    ",", "10", ",", "2", ",", "10", ",", "3", ",", "8", ",", "8", ",", "7", 
+   ",", "3", ",", "8", ",", "5", ",", "4", ",", "4", ",", "2", ",", "3", ",", 
+   "10", ",", "7", ",", "1", ",", "4", ",", "0", ",", "1", ",", "3", ",", 
+   "10", ",", "4", ",", "10", ",", "1", ",", "8", ",", "6", ",", "6", ",", 
+   "1", ",", "5", ",", "6", ",", "6", ",", "0", ",", "3", ",", "10", ",", "0",
+    ",", "0", ",", "8", ",", "8", ",", "5", ",", "1", ",", "2", ",", "1", ",",
+    "10", ",", "5", ",", "3", ",", "0"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.680002341053404*^9, 3.680003269297641*^9, {3.680003322837447*^9, 
+   3.6800033349906263`*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{942, 974},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (April 11, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 149, 3, 31, "Input",
+ InitializationCell->True],
+Cell[732, 27, 239, 3, 52, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1008, 35, 680, 14, 232, "Input"],
+Cell[1691, 51, 313, 5, 52, "Output"],
+Cell[2007, 58, 375, 6, 192, "Output"],
+Cell[2385, 66, 189, 3, 31, "Output"]
+}, Open  ]],
+Cell[2589, 72, 108, 1, 64, "Chapter"],
+Cell[CellGroupData[{
+Cell[2722, 77, 170, 2, 53, "Chapter"],
+Cell[2895, 81, 168, 3, 30, "Text"],
+Cell[3066, 86, 121, 1, 30, "Text"],
+Cell[CellGroupData[{
+Cell[3212, 91, 2427, 55, 232, "Input"],
+Cell[5642, 148, 1746, 45, 52, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7437, 199, 106, 1, 64, "Chapter"],
+Cell[CellGroupData[{
+Cell[7568, 204, 167, 3, 31, "Input"],
+Cell[7738, 209, 447, 7, 52, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8222, 221, 5133, 126, 852, "Input"],
+Cell[13358, 349, 567, 7, 212, "Output"],
+Cell[13928, 358, 949, 13, 492, "Output"],
+Cell[14880, 373, 1287, 18, 672, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16204, 396, 2534, 50, 552, "Input"],
+Cell[18741, 448, 974, 13, 52, "Output"],
+Cell[19718, 463, 866, 11, 31, "Output"],
+Cell[20587, 476, 855, 11, 31, "Output"],
+Cell[21445, 489, 859, 11, 31, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22353, 506, 95, 1, 64, "Chapter"],
+Cell[22451, 509, 299, 6, 31, "Input"],
+Cell[22753, 517, 251, 5, 31, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23041, 527, 95, 1, 64, "Chapter"],
+Cell[CellGroupData[{
+Cell[23161, 532, 380, 9, 31, "Input"],
+Cell[23544, 543, 1502, 43, 92, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25083, 591, 167, 3, 31, "Input"],
+Cell[25253, 596, 191, 3, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25481, 604, 121, 2, 31, "Input"],
+Cell[25605, 608, 94, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25736, 614, 119, 2, 31, "Input"],
+Cell[25858, 618, 92, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25987, 624, 257, 5, 31, "Input"],
+Cell[26247, 631, 1331, 21, 92, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27615, 657, 252, 5, 31, "Input"],
+Cell[27870, 664, 268, 5, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28175, 674, 129, 3, 31, "Input"],
+Cell[28307, 679, 210, 5, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28554, 689, 156, 3, 31, "Input"],
+Cell[28713, 694, 123, 2, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28873, 701, 455, 11, 52, "Input"],
+Cell[29331, 714, 1235, 19, 72, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

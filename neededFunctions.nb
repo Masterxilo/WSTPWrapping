@@ -1,0 +1,197 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5365,        189]
+NotebookOptionsPosition[      4217,        146]
+NotebookOutlinePosition[      4563,        161]
+CellTagsIndexPosition[      4520,        158]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"assumed", " ", "available", " ", "functions"}], "*)"}]], "Input",
+ CellChangeTimes->{{3.680013781237158*^9, 3.6800137859069843`*^9}, {
+  3.680013834382456*^9, 3.6800138370958414`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["memory functions", "Chapter",
+ CellChangeTimes->{{3.680014521345657*^9, 3.6800145444725046`*^9}}],
+
+Cell["\<\
+
+tmalloc<T>(len)
+mallocmemcpy(name, lengthVarname)
+memoryFree(varname)
+
+freemallocstrcpy
+freemalloctmemcpy\
+\>", "Text",
+ CellChangeTimes->{{3.680013791576058*^9, 3.68001394482226*^9}, {
+  3.6800141183307753`*^9, 3.680014188792694*^9}, {3.6800142313287687`*^9, 
+  3.680014236308981*^9}, {3.680014328191617*^9, 3.6800143327663293`*^9}, {
+  3.6800144726238585`*^9, 3.680014559805642*^9}}],
+
+Cell["\<\
+status: keep as meta-constructs and return in SymbolicC, let the caller decide?
+have the caller provide implementations?\
+\>", "Subsection",
+ CellChangeTimes->{{3.680014606997505*^9, 3.6800146082000055`*^9}, {
+  3.6800146610219135`*^9, 3.6800146835900755`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["cuda functions", "Chapter",
+ CellChangeTimes->{{3.6800145465320563`*^9, 3.6800145479898753`*^9}}],
+
+Cell["\<\
+When using cuda, it is assumed that all allocations happen in unified memory \
+space.\
+\>", "Text",
+ CellChangeTimes->{{3.680014582656131*^9, 3.680014599289888*^9}}],
+
+Cell["\<\
+CUDAKERNEL_LAUNCH(KERNEL_..., gridDim, blockDim, args)
+linear_global _threadId()\
+\>", "Text",
+ CellChangeTimes->{3.6800145542426925`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["wstp-like functions", "Chapter",
+ CellChangeTimes->{{3.6800144944941244`*^9, 3.6800144996775923`*^9}}],
+
+Cell["\<\
+WSGetList(basetype, varname, varname_length, wstype)
+WSReleaseList(varname, varname_length, wstype)
+WSGetCString(varname)
+WSReleaseCString(varname)
+WSGet(basetype,varname,wstype)
+WSPutList(wstype,what,len)
+WSPut(wstype, what)
+WSPutCString()
+WL_RETURN _VOID()\
+\>", "Text",
+ CellChangeTimes->{3.680014504196231*^9, 3.680014539124813*^9}],
+
+Cell["status: drop, generate explicitly the right call", "Subsection",
+ CellChangeTimes->{{3.6800145068555512`*^9, 3.6800145088860826`*^9}, {
+  3.6800146119657025`*^9, 3.680014628189947*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["wstp functions", "Chapter",
+ CellChangeTimes->{{3.680014216979887*^9, 3.6800142188882313`*^9}}],
+
+Cell["\<\
+WSPutString(stdlink ,... )
+WSPutFunction\
+\>", "Text",
+ CellChangeTimes->{3.680014233290205*^9}],
+
+Cell["Status: ok", "Subsection",
+ CellChangeTimes->{{3.680014486039613*^9, 3.6800144875384607`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["used special variable names and identifiers", "Chapter",
+ CellChangeTimes->{{3.680014221230153*^9, 3.6800142284321423`*^9}}],
+
+Cell["\<\
+\[OpenCurlyDoubleQuote]_returns_\[CloseCurlyDoubleQuote]
+_result _
+_in
+_length
+_inout\
+\>", "Text",
+ CellChangeTimes->{{3.6800142436291027`*^9, 3.6800142638904*^9}, {
+  3.68001431481793*^9, 3.6800143213881392`*^9}}],
+
+Cell["\<\
+status: keep meta as well? If only local: don\[CloseCurlyQuote]t care, don\
+\[CloseCurlyQuote]t document?\
+\>", "Subsection",
+ CellChangeTimes->{{3.680014643849489*^9, 3.6800146466439724`*^9}, {
+  3.6800146895154696`*^9, 3.680014707796292*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Function generation", "Subchapter",
+ CellChangeTimes->{3.68001434290199*^9}],
+
+Cell[BoxData[{"_", "\[IndentingNewLine]", "_get", "\[IndentingNewLine]", \
+"_set"}], "Input",
+ CellChangeTimes->{{3.68001435218055*^9, 3.680014360325729*^9}}],
+
+Cell["status: move to convenience package?", "Subsection",
+ CellChangeTimes->{{3.680014650151352*^9, 3.6800146508221865`*^9}, {
+  3.680014711949461*^9, 3.680014717171978*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1173, 974},
+WindowMargins->{{Automatic, 227}, {Automatic, 152}},
+FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (April 11, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 225, 4, 31, "Input"],
+Cell[CellGroupData[{
+Cell[808, 28, 103, 1, 64, "Chapter"],
+Cell[914, 31, 396, 12, 144, "Text"],
+Cell[1313, 45, 271, 5, 67, "Subsection"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1621, 55, 103, 1, 64, "Chapter"],
+Cell[1727, 58, 175, 4, 30, "Text"],
+Cell[1905, 64, 148, 4, 49, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2090, 73, 108, 1, 64, "Chapter"],
+Cell[2201, 76, 346, 11, 182, "Text"],
+Cell[2550, 89, 191, 2, 43, "Subsection"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2778, 96, 101, 1, 64, "Chapter"],
+Cell[2882, 99, 106, 4, 49, "Text"],
+Cell[2991, 105, 100, 1, 43, "Subsection"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3128, 111, 130, 1, 64, "Chapter"],
+Cell[3261, 114, 225, 8, 106, "Text"],
+Cell[3489, 124, 254, 5, 43, "Subsection"],
+Cell[CellGroupData[{
+Cell[3768, 133, 82, 1, 46, "Subchapter"],
+Cell[3853, 136, 158, 2, 72, "Input"],
+Cell[4014, 140, 175, 2, 43, "Subsection"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

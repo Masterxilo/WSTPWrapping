@@ -1,8 +1,11 @@
 WSTPWrappingDemo/x64
 WSTPWrappingDemo/generated
+WSTPWrappingWithCUDA/x64
+WSTPWrappingWithCUDA/generated
 *.sdf
 *.suo
 *.opensdf
+*.pdb
 
 # Windows image file caches
 Thumbs.db

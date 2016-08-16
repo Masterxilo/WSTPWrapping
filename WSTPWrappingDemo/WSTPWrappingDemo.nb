@@ -10,14 +10,19 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     30072,        570]
-NotebookOptionsPosition[     28607,        514]
-NotebookOutlinePosition[     28948,        529]
-CellTagsIndexPosition[     28905,        526]
+NotebookDataLength[     30267,        577]
+NotebookOptionsPosition[     28736,        519]
+NotebookOutlinePosition[     29079,        534]
+CellTagsIndexPosition[     29036,        531]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+Cell[BoxData[
+ RowBox[{"SetDirectory", "@", 
+  RowBox[{"NotebookDirectory", "[", "]"}]}]], "Input",
+ InitializationCell->True],
+
 Cell["0. Run WSTPWrapping.nb", "Chapter",
  CellChangeTimes->{{3.67999290651828*^9, 3.6799929089483185`*^9}}],
 
@@ -513,7 +518,7 @@ Cell[BoxData[
 }, Open  ]]
 },
 WindowSize->{942, 974},
-WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowMargins->{{40, Automatic}, {Automatic, 50}},
 FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (April 11, 2016)",
 StyleDefinitions->"Default.nb"
 ]
@@ -528,49 +533,51 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 108, 1, 64, "Chapter"],
+Cell[558, 20, 126, 3, 31, "Input",
+ InitializationCell->True],
+Cell[687, 25, 108, 1, 64, "Chapter"],
 Cell[CellGroupData[{
-Cell[691, 25, 170, 2, 53, "Chapter"],
-Cell[864, 29, 168, 3, 30, "Text"],
-Cell[1035, 34, 121, 1, 30, "Text"],
+Cell[820, 30, 170, 2, 53, "Chapter"],
+Cell[993, 34, 168, 3, 30, "Text"],
+Cell[1164, 39, 121, 1, 30, "Text"],
 Cell[CellGroupData[{
-Cell[1181, 39, 1143, 27, 112, "Input"],
-Cell[2327, 68, 785, 18, 31, "Output"]
+Cell[1310, 44, 1143, 27, 112, "Input"],
+Cell[2456, 73, 785, 18, 31, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3161, 92, 106, 1, 64, "Chapter"],
+Cell[3290, 97, 106, 1, 64, "Chapter"],
 Cell[CellGroupData[{
-Cell[3292, 97, 167, 3, 31, "Input"],
-Cell[3462, 102, 393, 6, 52, "Output"]
+Cell[3421, 102, 167, 3, 31, "Input"],
+Cell[3591, 107, 393, 6, 52, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3892, 113, 1859, 39, 472, "Input"],
-Cell[5754, 154, 499, 6, 31, "Output"],
-Cell[6256, 162, 488, 6, 31, "Output"],
-Cell[6747, 170, 492, 6, 31, "Output"]
+Cell[4021, 118, 1859, 39, 472, "Input"],
+Cell[5883, 159, 499, 6, 31, "Output"],
+Cell[6385, 167, 488, 6, 31, "Output"],
+Cell[6876, 175, 492, 6, 31, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7288, 182, 95, 1, 64, "Chapter"],
+Cell[7417, 187, 95, 1, 64, "Chapter"],
 Cell[CellGroupData[{
-Cell[7408, 187, 176, 3, 31, "Input"],
-Cell[7587, 192, 167, 2, 62, "Echo"],
-Cell[7757, 196, 274, 4, 72, "Output"]
+Cell[7537, 192, 176, 3, 31, "Input"],
+Cell[7716, 197, 167, 2, 62, "Echo"],
+Cell[7886, 201, 274, 4, 72, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8068, 205, 150, 2, 31, "Input"],
-Cell[8221, 209, 9572, 131, 1886, "Echo"],
-Cell[17796, 342, 9803, 135, 2052, "Output"]
+Cell[8197, 210, 150, 2, 31, "Input"],
+Cell[8350, 214, 9572, 131, 1886, "Echo"],
+Cell[17925, 347, 9803, 135, 2052, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[27648, 483, 95, 1, 64, "Chapter"],
+Cell[27777, 488, 95, 1, 64, "Chapter"],
 Cell[CellGroupData[{
-Cell[27768, 488, 325, 8, 31, "Input"],
-Cell[28096, 498, 339, 8, 31, "Output"]
+Cell[27897, 493, 325, 8, 31, "Input"],
+Cell[28225, 503, 339, 8, 31, "Output"]
 }, Open  ]],
-Cell[28450, 509, 141, 2, 31, "Input"]
+Cell[28579, 514, 141, 2, 31, "Input"]
 }, Open  ]]
 }
 ]
