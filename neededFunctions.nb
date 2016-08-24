@@ -10,19 +10,24 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      5365,        189]
-NotebookOptionsPosition[      4217,        146]
-NotebookOutlinePosition[      4563,        161]
-CellTagsIndexPosition[      4520,        158]
+NotebookDataLength[      5636,        195]
+NotebookOptionsPosition[      4448,        151]
+NotebookOutlinePosition[      4796,        166]
+CellTagsIndexPosition[      4753,        163]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
-Cell[BoxData[
- RowBox[{"(*", 
-  RowBox[{"assumed", " ", "available", " ", "functions"}], "*)"}]], "Input",
+Cell["\<\
+These are functions/macros that WSTPWrapping assumes available or implements \
+in its defines and uses from the C code it generates.\
+\>", "Text",
  CellChangeTimes->{{3.680013781237158*^9, 3.6800137859069843`*^9}, {
-  3.680013834382456*^9, 3.6800138370958414`*^9}}],
+  3.680013834382456*^9, 3.6800138370958414`*^9}, {3.6809715449781103`*^9, 
+  3.680971592425914*^9}}],
+
+Cell["This is quite ad-hoc and subject to change.", "Text",
+ CellChangeTimes->{{3.680971577987835*^9, 3.6809715877850943`*^9}}],
 
 Cell[CellGroupData[{
 
@@ -145,7 +150,7 @@ Cell["status: move to convenience package?", "Subsection",
 }, Open  ]]
 },
 WindowSize->{1173, 974},
-WindowMargins->{{Automatic, 227}, {Automatic, 152}},
+WindowMargins->{{-133, Automatic}, {-401, Automatic}},
 FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (April 11, 2016)",
 StyleDefinitions->"Default.nb"
 ]
@@ -160,35 +165,36 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 225, 4, 31, "Input"],
+Cell[558, 20, 326, 6, 30, "Text"],
+Cell[887, 28, 127, 1, 30, "Text"],
 Cell[CellGroupData[{
-Cell[808, 28, 103, 1, 64, "Chapter"],
-Cell[914, 31, 396, 12, 144, "Text"],
-Cell[1313, 45, 271, 5, 67, "Subsection"]
+Cell[1039, 33, 103, 1, 64, "Chapter"],
+Cell[1145, 36, 396, 12, 144, "Text"],
+Cell[1544, 50, 271, 5, 67, "Subsection"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1621, 55, 103, 1, 64, "Chapter"],
-Cell[1727, 58, 175, 4, 30, "Text"],
-Cell[1905, 64, 148, 4, 49, "Text"]
+Cell[1852, 60, 103, 1, 64, "Chapter"],
+Cell[1958, 63, 175, 4, 30, "Text"],
+Cell[2136, 69, 148, 4, 49, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2090, 73, 108, 1, 64, "Chapter"],
-Cell[2201, 76, 346, 11, 182, "Text"],
-Cell[2550, 89, 191, 2, 43, "Subsection"]
+Cell[2321, 78, 108, 1, 64, "Chapter"],
+Cell[2432, 81, 346, 11, 182, "Text"],
+Cell[2781, 94, 191, 2, 43, "Subsection"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2778, 96, 101, 1, 64, "Chapter"],
-Cell[2882, 99, 106, 4, 49, "Text"],
-Cell[2991, 105, 100, 1, 43, "Subsection"]
+Cell[3009, 101, 101, 1, 64, "Chapter"],
+Cell[3113, 104, 106, 4, 49, "Text"],
+Cell[3222, 110, 100, 1, 43, "Subsection"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3128, 111, 130, 1, 64, "Chapter"],
-Cell[3261, 114, 225, 8, 106, "Text"],
-Cell[3489, 124, 254, 5, 43, "Subsection"],
+Cell[3359, 116, 130, 1, 64, "Chapter"],
+Cell[3492, 119, 225, 8, 106, "Text"],
+Cell[3720, 129, 254, 5, 43, "Subsection"],
 Cell[CellGroupData[{
-Cell[3768, 133, 82, 1, 46, "Subchapter"],
-Cell[3853, 136, 158, 2, 72, "Input"],
-Cell[4014, 140, 175, 2, 43, "Subsection"]
+Cell[3999, 138, 82, 1, 46, "Subchapter"],
+Cell[4084, 141, 158, 2, 72, "Input"],
+Cell[4245, 145, 175, 2, 43, "Subsection"]
 }, Open  ]]
 }, Open  ]]
 }
